@@ -9,7 +9,7 @@ import java.util.Objects;
 public class TbPeminjamanEntity {
     private int idPeminjaman;
     private String namaPeminjam;
-    private Object keperluan;
+    private String keperluan;
     private Date tanggalPinjam;
     private Date tanggalKembali;
     private Date tanggalPersetujuan;
@@ -23,7 +23,7 @@ public class TbPeminjamanEntity {
     public TbPeminjamanEntity() {
     }
 
-    public TbPeminjamanEntity(int idPeminjaman, String namaPeminjam, Object keperluan, Date tanggalPinjam, Date tanggalKembali, Date tanggalPersetujuan, Date jatuhTempoPengembalian, String createdBy, String approvedBy, Date createdDate, TbMasterbmnEntity tbMasterbmnByIdMasterbmn, TbPegawaiEntity tbPegawaiByNip) {
+    public TbPeminjamanEntity(int idPeminjaman, String namaPeminjam, String keperluan, Date tanggalPinjam, Date tanggalKembali, Date tanggalPersetujuan, Date jatuhTempoPengembalian, String createdBy, String approvedBy, Date createdDate, TbMasterbmnEntity tbMasterbmnByIdMasterbmn, TbPegawaiEntity tbPegawaiByNip) {
         this.idPeminjaman = idPeminjaman;
         this.namaPeminjam = namaPeminjam;
         this.keperluan = keperluan;
@@ -60,11 +60,11 @@ public class TbPeminjamanEntity {
 
     @Basic
     @Column(name = "keperluan", nullable = true, length = -1)
-    public Object getKeperluan() {
+    public String getKeperluan() {
         return keperluan;
     }
 
-    public void setKeperluan(Object keperluan) {
+    public void setKeperluan(String keperluan) {
         this.keperluan = keperluan;
     }
 
