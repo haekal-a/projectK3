@@ -43,6 +43,5 @@ public class PegawaiController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
     }
 }

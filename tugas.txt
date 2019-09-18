@@ -1,0 +1,46 @@
+Semua return, dibungkus dalam 
+AjaxResponseModel -> {title: string, code: string, message: string, data Object}
+
+
+LOGIN
+a. auth -> kirim {nip: string, pass: string}
+	-> get {nip: string, token: string, role: string, dataUser: DataUser -> itu isi semua data dalam tabel pegawai}
+
+REGISTER
+a. cekNip 
+	-> kirim {nip: string}
+	-> get {user: string}, kalau tidak ada nip nya, maka balikin status code 0, dan message tidak ditemukan
+b. register
+	-> kirim{nip: string, pass: string}
+	-> get {message: berhasil}
+
+SAVE PEMINJAMAN
+a. get daftar barang yang bisa dipinjam
+1. join tabel bmn + status barang
+2. query where, status barang = 0(tersedia) dan kondisi = 0(baik)
+
+b. save + edit
+1. siapin model buat tampungan save
+2. data yang dikirim = {idBarang: BigDecimal, namaPeminjam: string, nip: string, keperluan: string, tanggalpinjam: date, tanggaljatuhtempo: date}
+3. set status peminjaman = 0(menunggu konfirmasi)
+
+c. daftar konfirmasi
+1. query = tabel peminjaman query by nip, where status peminjaman = 0;
+
+d. hapus case peminjaman
+1. data = idpeminjaman => hapus
+
+e. edit
+1. data = idpeminjaman => get data peminjaman by id
+
+PERSETUJUAN
+a. setuju
+1. data: idpeminjaman=> cek? status barangnya, statusnya = 1? => message: sudah dipinjam oleh orang lain.
+	berhasil? status peminjaman di tabel peminjaman = 1, status barang di tabel status barang = 1
+
+a. tolak
+1. data: {idPeminjaman, alasan penolakan}, set status peminjaman = 2, insert alasan penolakan.
+
+REKAM PENGEMBALIAN
+a. rekam
+1. data = {idpeminjaman, tanggalpengembalian, kondisi }, idpeminjaman, tanggalpengembalian => set di tabel peminjaman, ditabel kondisi => set status barang = 0 dan kondisi sesuai dengan inputan admin
