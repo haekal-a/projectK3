@@ -4,12 +4,20 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "kode_barang", schema = "db_simak_bmn", catalog = "")
+@Table(name = "kode_barang", schema = "db_simak_bmn")
 public class KodeBarangEntity {
     private String kdBarang;
     private String jenisBarang;
     private String keterangan;
 
+    public KodeBarangEntity() {
+    }
+
+    public KodeBarangEntity(String kdBarang, String jenisBarang, String keterangan) {
+        this.kdBarang = kdBarang;
+        this.jenisBarang = jenisBarang;
+        this.keterangan = keterangan;
+    }
     @Id
     @Column(name = "kd_barang", nullable = false, length = 10)
     public String getKdBarang() {

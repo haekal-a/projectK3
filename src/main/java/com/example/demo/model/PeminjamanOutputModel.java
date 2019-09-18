@@ -1,10 +1,12 @@
 package com.example.demo.model;
 
 
+import java.math.BigDecimal;
+
 public class PeminjamanOutputModel {
 
-  private long idPeminjaman;
-  private long idBarang;
+  private BigDecimal idPeminjaman;
+  private BigDecimal idBarang;
   private String nip;
   private String namaPeminjam;
   private String keperluan;
@@ -19,20 +21,20 @@ public class PeminjamanOutputModel {
   private String alasanPenolakan;
 
 
-  public long getIdPeminjaman() {
+  public BigDecimal getIdPeminjaman() {
     return idPeminjaman;
   }
 
-  public void setIdPeminjaman(long idPeminjaman) {
+  public void setIdPeminjaman(BigDecimal idPeminjaman) {
     this.idPeminjaman = idPeminjaman;
   }
 
 
-  public long getIdBarang() {
+  public BigDecimal getIdBarang() {
     return idBarang;
   }
 
-  public void setIdBarang(long idBarang) {
+  public void setIdBarang(BigDecimal idBarang) {
     this.idBarang = idBarang;
   }
 

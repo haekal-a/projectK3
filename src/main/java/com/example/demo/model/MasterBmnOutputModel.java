@@ -1,24 +1,27 @@
 package com.example.demo.model;
 
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 public class MasterBmnOutputModel {
 
-  private long id;
+  private BigDecimal id;
   private String kdBarang;
   private String namaBarang;
   private String merkBarang;
-  private long tahunPembelian;
+  private String tahunPembelian;
   private String keterangan;
   private String kondisi;
   private String createdBy;
-  private java.sql.Date createdDate;
+  private Date createdDate;
 
 
-  public long getId() {
+  public BigDecimal getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(BigDecimal id) {
     this.id = id;
   }
 
@@ -50,11 +53,11 @@ public class MasterBmnOutputModel {
   }
 
 
-  public long getTahunPembelian() {
+  public String getTahunPembelian() {
     return tahunPembelian;
   }
 
-  public void setTahunPembelian(long tahunPembelian) {
+  public void setTahunPembelian(String tahunPembelian) {
     this.tahunPembelian = tahunPembelian;
   }
 
@@ -86,7 +89,7 @@ public class MasterBmnOutputModel {
   }
 
 
-  public java.sql.Date getCreatedDate() {
+  public Date getCreatedDate() {
     return createdDate;
   }
 

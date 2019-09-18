@@ -4,11 +4,20 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "user", schema = "db_penari_desa", catalog = "")
+@Table(name = "user", schema = "db_penari_desa")
 public class UserEntity {
     private String username;
     private String password;
     private String role;
+
+    public UserEntity() {
+    }
+
+    public UserEntity(String username, String password, String role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
     @Id
     @Column(name = "Username", nullable = false, length = 18)

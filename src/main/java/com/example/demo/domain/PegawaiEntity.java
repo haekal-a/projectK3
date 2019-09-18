@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "pegawai", schema = "db_pegawai", catalog = "")
+@Table(name = "pegawai", schema = "db_pegawai")
 public class PegawaiEntity {
     private String nip;
     private String namaPegawai;
@@ -14,6 +14,20 @@ public class PegawaiEntity {
     private String noTelepon;
     private String alamatEmail;
     private String seksi;
+
+    public PegawaiEntity() {
+    }
+
+    public PegawaiEntity(String nip, String namaPegawai, String subBagian, String jabatan, String alamat, String noTelepon, String alamatEmail, String seksi) {
+        this.nip = nip;
+        this.namaPegawai = namaPegawai;
+        this.subBagian = subBagian;
+        this.jabatan = jabatan;
+        this.alamat = alamat;
+        this.noTelepon = noTelepon;
+        this.alamatEmail = alamatEmail;
+        this.seksi = seksi;
+    }
 
     @Id
     @Column(name = "NIP", nullable = false, length = 18)

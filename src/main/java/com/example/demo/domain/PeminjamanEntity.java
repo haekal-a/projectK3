@@ -1,14 +1,15 @@
 package com.example.demo.domain;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "peminjaman", schema = "db_penari_desa", catalog = "")
+@Table(name = "peminjaman", schema = "db_penari_desa")
 public class PeminjamanEntity {
-    private int idPeminjaman;
-    private int idBarang;
+    private BigDecimal idPeminjaman;
+    private BigDecimal idBarang;
     private String nip;
     private String namaPeminjam;
     private String keperluan;
@@ -22,23 +23,43 @@ public class PeminjamanEntity {
     private String statusPeminjaman;
     private String alasanPenolakan;
 
+    public PeminjamanEntity() {
+    }
+
+    public PeminjamanEntity(BigDecimal idPeminjaman, BigDecimal idBarang, String nip, String namaPeminjam, String keperluan, Date tanggalPinjam, Date tanggalKembali, Date tanggalPersetujuan, Date jatuhTempoPengembalian, String createdBy, String approvedBy, Date createdDate, String statusPeminjaman, String alasanPenolakan) {
+        this.idPeminjaman = idPeminjaman;
+        this.idBarang = idBarang;
+        this.nip = nip;
+        this.namaPeminjam = namaPeminjam;
+        this.keperluan = keperluan;
+        this.tanggalPinjam = tanggalPinjam;
+        this.tanggalKembali = tanggalKembali;
+        this.tanggalPersetujuan = tanggalPersetujuan;
+        this.jatuhTempoPengembalian = jatuhTempoPengembalian;
+        this.createdBy = createdBy;
+        this.approvedBy = approvedBy;
+        this.createdDate = createdDate;
+        this.statusPeminjaman = statusPeminjaman;
+        this.alasanPenolakan = alasanPenolakan;
+    }
+
     @Id
     @Column(name = "id_peminjaman", nullable = false)
-    public int getIdPeminjaman() {
+    public BigDecimal getIdPeminjaman() {
         return idPeminjaman;
     }
 
-    public void setIdPeminjaman(int idPeminjaman) {
+    public void setIdPeminjaman(BigDecimal idPeminjaman) {
         this.idPeminjaman = idPeminjaman;
     }
 
     @Basic
     @Column(name = "id_barang", nullable = false)
-    public int getIdBarang() {
+    public BigDecimal getIdBarang() {
         return idBarang;
     }
 
-    public void setIdBarang(int idBarang) {
+    public void setIdBarang(BigDecimal idBarang) {
         this.idBarang = idBarang;
     }
 
