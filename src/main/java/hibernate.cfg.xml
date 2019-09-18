@@ -21,12 +21,12 @@
         <!-- Set the current session context -->
         <property name="current_session_context_class">thread</property>
 
-        <mapping class="com.example.demo.domain.PegawaiEntity"/>
-        <mapping class="com.example.demo.domain.PeminjamanEntity"/>
+        <mapping class="com.example.demo.domain.dbpegawai.PegawaiEntity"/>
+        <mapping class="com.example.demo.domain.dbpenaridesa.PeminjamanEntity"/>
         <mapping class="com.example.demo.domain.KodeBarangEntity"/>
         <mapping class="com.example.demo.domain.MasterBmnEntity"/>
-        <mapping class="com.example.demo.domain.UserEntity"/>
-        <mapping class="com.example.demo.domain.StatusBarangEntity"/>
+        <mapping class="com.example.demo.domain.dbpenaridesa.UserEntity"/>
+        <mapping class="com.example.demo.domain.dbpenaridesa.StatusBarangEntity"/>
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->

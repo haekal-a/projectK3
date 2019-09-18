@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.domain.dbpenaridesa;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

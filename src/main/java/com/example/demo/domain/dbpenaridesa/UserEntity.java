@@ -1,10 +1,10 @@
-package com.example.demo.domain;
+package com.example.demo.domain.dbpenaridesa;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "user", schema = "db_penari_desa")
+@Table(name = "user")
 public class UserEntity {
     private String username;
     private String password;

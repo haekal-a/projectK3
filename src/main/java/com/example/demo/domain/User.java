@@ -2,38 +2,32 @@ package com.example.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by Reza Pahlevie on 31/08/2019.
  */
 @Entity
 @Table(name = "user")
-public class UserInfo {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column
+public class User {
     private String username;
-    @Column
-    @JsonIgnore
     private String password;
     private String role;
 
-    public Long getId() {
-        return id;
+    public User() {
     }
 
-    public UserInfo() {
-    }
-
-    public UserInfo(String username, String password, String role) {
+    public User(String username, String password, String role) {
         this.username = username;
         this.password = password;
         this.role = role;
     }
 
+    @Id
+    @Column(name = "Username")
     public String getUsername() {
         return username;
     }
@@ -42,6 +36,7 @@ public class UserInfo {
         this.username = username;
     }
 
+    @Column(name = "Password")
     public String getPassword() {
         return password;
     }
@@ -50,6 +45,7 @@ public class UserInfo {
         this.password = password;
     }
 
+    @Column(name = "Role")
     public String getRole() {
         return role;
     }

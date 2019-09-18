@@ -1,10 +1,10 @@
 package com.example.demo.jwt.resource;
 
-import com.example.demo.domain.UserInfo;
+import com.example.demo.domain.User;
 import com.example.demo.jwt.JwtTokenUtil;
 import com.example.demo.jwt.JwtUserDetails;
 import com.example.demo.model.UserModel;
-import com.example.demo.repo.UserRepository;
+import com.example.demo.repo.dbpenaridesa.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -71,15 +71,15 @@ public class JwtAuthenticationRestController {
     }
 
     // untuk insert data baru
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@RequestBody UserModel user) throws Exception {
-        UserInfo newUser = new UserInfo();
+        User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
         newUser.setRole(user.getRole());
 
         return ResponseEntity.ok(userRepo.save(newUser));
-    }
+    }*/
 
     @ExceptionHandler({AuthenticationException.class})
     public ResponseEntity<String> handleAuthenticationException(AuthenticationException e) {

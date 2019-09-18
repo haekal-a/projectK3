@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 public class CommonResponseModel {
-    //pura2 komit
+
     private String title;
     private String code;
     private String message;

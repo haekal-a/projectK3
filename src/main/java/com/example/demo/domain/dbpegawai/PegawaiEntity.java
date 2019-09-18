@@ -1,10 +1,10 @@
-package com.example.demo.domain;
+package com.example.demo.domain.dbpegawai;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "pegawai", schema = "db_pegawai")
+@Table(name = "pegawai")
 public class PegawaiEntity {
     private String nip;
     private String namaPegawai;
