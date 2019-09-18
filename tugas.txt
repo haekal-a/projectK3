@@ -1,7 +1,6 @@
 Semua return, dibungkus dalam 
 AjaxResponseModel -> {title: string, code: string, message: string, data Object}
 
-
 LOGIN
 a. auth -> kirim {nip: string, pass: string}
 	-> get {nip: string, token: string, role: string, dataUser: DataUser -> itu isi semua data dalam tabel pegawai}
@@ -43,4 +42,6 @@ a. tolak
 
 REKAM PENGEMBALIAN
 a. rekam
-1. data = {idpeminjaman, tanggalpengembalian, kondisi }, idpeminjaman, tanggalpengembalian => set di tabel peminjaman, ditabel kondisi => set status barang = 0 dan kondisi sesuai dengan inputan admin
+1. data = {idpeminjaman, tanggalpengembalian, kondisi }, idpeminjaman, tanggalpengembalian => set di tabel peminjaman
+   dan set status_peminjaman = 3 (selesai),
+   ditabel kondisi => set status barang = 0 dan kondisi sesuai dengan inputan admin
