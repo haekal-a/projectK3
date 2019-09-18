@@ -1,25 +1,25 @@
 package com.example.demo.model;
 
 
-public class TbMasterbmn {
+public class MasterBmnOutputModel {
 
-  private long idMasterbmn;
+  private long id;
   private String kdBarang;
   private String namaBarang;
   private String merkBarang;
-  private java.sql.Date tahunPembelian;
+  private long tahunPembelian;
   private String keterangan;
   private String kondisi;
   private String createdBy;
   private java.sql.Date createdDate;
 
 
-  public long getIdMasterbmn() {
-    return idMasterbmn;
+  public long getId() {
+    return id;
   }
 
-  public void setIdMasterbmn(long idMasterbmn) {
-    this.idMasterbmn = idMasterbmn;
+  public void setId(long id) {
+    this.id = id;
   }
 
 
@@ -50,11 +50,11 @@ public class TbMasterbmn {
   }
 
 
-  public java.sql.Date getTahunPembelian() {
+  public long getTahunPembelian() {
     return tahunPembelian;
   }
 
-  public void setTahunPembelian(java.sql.Date tahunPembelian) {
+  public void setTahunPembelian(long tahunPembelian) {
     this.tahunPembelian = tahunPembelian;
   }
 

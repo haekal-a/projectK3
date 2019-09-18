@@ -4,15 +4,29 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+
+        <!-- JDBC Database connection settings -->
         <property name="connection.url">jdbc:mysql://localhost:3306</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <mapping class="com.example.demo.domain.TbKdbarangEntity"/>
-        <mapping class="com.example.demo.domain.TbMasterbmnEntity"/>
-        <mapping class="com.example.demo.domain.TbPegawaiEntity"/>
-        <mapping class="com.example.demo.domain.TbPeminjamanEntity"/>
-        <mapping class="com.example.demo.domain.TbStsBarangEntity"/>
-        <!-- <property name="connection.username"/> -->
-        <!-- <property name="connection.password"/> -->
+
+        <!-- JDBC connection pool settings ... using built-in test pool -->
+<!--        <property name="connection.pool_size">1</property>-->
+
+        <!-- Select our SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Echo the SQL to stdout -->
+        <property name="show_sql">true</property>
+
+        <!-- Set the current session context -->
+        <property name="current_session_context_class">thread</property>
+
+        <mapping class="com.example.demo.domain.PegawaiEntity"/>
+        <mapping class="com.example.demo.domain.PeminjamanEntity"/>
+        <mapping class="com.example.demo.domain.KodeBarangEntity"/>
+        <mapping class="com.example.demo.domain.MasterBmnEntity"/>
+        <mapping class="com.example.demo.domain.UserEntity"/>
+        <mapping class="com.example.demo.domain.StatusBarangEntity"/>
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->

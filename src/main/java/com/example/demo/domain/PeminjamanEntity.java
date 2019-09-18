@@ -5,9 +5,11 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_peminjaman", schema = "db_bmn")
-public class TbPeminjamanEntity {
+@Table(name = "peminjaman", schema = "db_penari_desa", catalog = "")
+public class PeminjamanEntity {
     private int idPeminjaman;
+    private int idBarang;
+    private String nip;
     private String namaPeminjam;
     private String keperluan;
     private Date tanggalPinjam;
@@ -17,26 +19,8 @@ public class TbPeminjamanEntity {
     private String createdBy;
     private String approvedBy;
     private Date createdDate;
-    private TbMasterbmnEntity tbMasterbmnByIdMasterbmn;
-    private TbPegawaiEntity tbPegawaiByNip;
-
-    public TbPeminjamanEntity() {
-    }
-
-    public TbPeminjamanEntity(int idPeminjaman, String namaPeminjam, String keperluan, Date tanggalPinjam, Date tanggalKembali, Date tanggalPersetujuan, Date jatuhTempoPengembalian, String createdBy, String approvedBy, Date createdDate, TbMasterbmnEntity tbMasterbmnByIdMasterbmn, TbPegawaiEntity tbPegawaiByNip) {
-        this.idPeminjaman = idPeminjaman;
-        this.namaPeminjam = namaPeminjam;
-        this.keperluan = keperluan;
-        this.tanggalPinjam = tanggalPinjam;
-        this.tanggalKembali = tanggalKembali;
-        this.tanggalPersetujuan = tanggalPersetujuan;
-        this.jatuhTempoPengembalian = jatuhTempoPengembalian;
-        this.createdBy = createdBy;
-        this.approvedBy = approvedBy;
-        this.createdDate = createdDate;
-        this.tbMasterbmnByIdMasterbmn = tbMasterbmnByIdMasterbmn;
-        this.tbPegawaiByNip = tbPegawaiByNip;
-    }
+    private String statusPeminjaman;
+    private String alasanPenolakan;
 
     @Id
     @Column(name = "id_peminjaman", nullable = false)
@@ -46,6 +30,26 @@ public class TbPeminjamanEntity {
 
     public void setIdPeminjaman(int idPeminjaman) {
         this.idPeminjaman = idPeminjaman;
+    }
+
+    @Basic
+    @Column(name = "id_barang", nullable = false)
+    public int getIdBarang() {
+        return idBarang;
+    }
+
+    public void setIdBarang(int idBarang) {
+        this.idBarang = idBarang;
+    }
+
+    @Basic
+    @Column(name = "nip", nullable = false, length = 18)
+    public String getNip() {
+        return nip;
+    }
+
+    public void setNip(String nip) {
+        this.nip = nip;
     }
 
     @Basic
@@ -59,7 +63,7 @@ public class TbPeminjamanEntity {
     }
 
     @Basic
-    @Column(name = "keperluan", nullable = true, length = -1)
+    @Column(name = "keperluan", nullable = true, length = 100)
     public String getKeperluan() {
         return keperluan;
     }
@@ -138,12 +142,34 @@ public class TbPeminjamanEntity {
         this.createdDate = createdDate;
     }
 
+    @Basic
+    @Column(name = "Status_Peminjaman", nullable = false, length = 1)
+    public String getStatusPeminjaman() {
+        return statusPeminjaman;
+    }
+
+    public void setStatusPeminjaman(String statusPeminjaman) {
+        this.statusPeminjaman = statusPeminjaman;
+    }
+
+    @Basic
+    @Column(name = "Alasan_Penolakan", nullable = false, length = 150)
+    public String getAlasanPenolakan() {
+        return alasanPenolakan;
+    }
+
+    public void setAlasanPenolakan(String alasanPenolakan) {
+        this.alasanPenolakan = alasanPenolakan;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TbPeminjamanEntity that = (TbPeminjamanEntity) o;
+        PeminjamanEntity that = (PeminjamanEntity) o;
         return idPeminjaman == that.idPeminjaman &&
+                idBarang == that.idBarang &&
+                Objects.equals(nip, that.nip) &&
                 Objects.equals(namaPeminjam, that.namaPeminjam) &&
                 Objects.equals(keperluan, that.keperluan) &&
                 Objects.equals(tanggalPinjam, that.tanggalPinjam) &&
@@ -152,31 +178,13 @@ public class TbPeminjamanEntity {
                 Objects.equals(jatuhTempoPengembalian, that.jatuhTempoPengembalian) &&
                 Objects.equals(createdBy, that.createdBy) &&
                 Objects.equals(approvedBy, that.approvedBy) &&
-                Objects.equals(createdDate, that.createdDate);
+                Objects.equals(createdDate, that.createdDate) &&
+                Objects.equals(statusPeminjaman, that.statusPeminjaman) &&
+                Objects.equals(alasanPenolakan, that.alasanPenolakan);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idPeminjaman, namaPeminjam, keperluan, tanggalPinjam, tanggalKembali, tanggalPersetujuan, jatuhTempoPengembalian, createdBy, approvedBy, createdDate);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_masterbmn", referencedColumnName = "id_masterbmn", nullable = false)
-    public TbMasterbmnEntity getTbMasterbmnByIdMasterbmn() {
-        return tbMasterbmnByIdMasterbmn;
-    }
-
-    public void setTbMasterbmnByIdMasterbmn(TbMasterbmnEntity tbMasterbmnByIdMasterbmn) {
-        this.tbMasterbmnByIdMasterbmn = tbMasterbmnByIdMasterbmn;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "nip", referencedColumnName = "nip", nullable = false)
-    public TbPegawaiEntity getTbPegawaiByNip() {
-        return tbPegawaiByNip;
-    }
-
-    public void setTbPegawaiByNip(TbPegawaiEntity tbPegawaiByNip) {
-        this.tbPegawaiByNip = tbPegawaiByNip;
+        return Objects.hash(idPeminjaman, idBarang, nip, namaPeminjam, keperluan, tanggalPinjam, tanggalKembali, tanggalPersetujuan, jatuhTempoPengembalian, createdBy, approvedBy, createdDate, statusPeminjaman, alasanPenolakan);
     }
 }

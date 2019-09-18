@@ -35,4 +35,19 @@ public class HelloWorldController {
 //        throw new RuntimeException("This is an error");
     }
 
+//    @GetMapping(value = "/getpegawai/{nip}")
+//    private static void getEmployeeById(@PathVariable String nip)
+//    {
+//        final String uri = "http://localhost:8181/employees/{nip}";
+//
+//        Map<String, String> params = new HashMap<String, String>();
+//        params.put("nip", nip);
+//        params.put("nip", "199212272014111002");
+//
+//        RestTemplate restTemplate = new RestTemplate();
+//        TbPegawai result = restTemplate.getForObject(uri, TbPegawai.class, params);
+//
+//        System.out.println(result);
+//    }
+
 }

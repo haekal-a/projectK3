@@ -1,10 +1,10 @@
 package com.example.demo.model;
 
 
-public class TbPeminjaman {
+public class PeminjamanOutputModel {
 
   private long idPeminjaman;
-  private long idMasterbmn;
+  private long idBarang;
   private String nip;
   private String namaPeminjam;
   private String keperluan;
@@ -15,6 +15,8 @@ public class TbPeminjaman {
   private String createdBy;
   private String approvedBy;
   private java.sql.Date createdDate;
+  private String statusPeminjaman;
+  private String alasanPenolakan;
 
 
   public long getIdPeminjaman() {
@@ -26,12 +28,12 @@ public class TbPeminjaman {
   }
 
 
-  public long getIdMasterbmn() {
-    return idMasterbmn;
+  public long getIdBarang() {
+    return idBarang;
   }
 
-  public void setIdMasterbmn(long idMasterbmn) {
-    this.idMasterbmn = idMasterbmn;
+  public void setIdBarang(long idBarang) {
+    this.idBarang = idBarang;
   }
 
 
@@ -122,6 +124,24 @@ public class TbPeminjaman {
 
   public void setCreatedDate(java.sql.Date createdDate) {
     this.createdDate = createdDate;
+  }
+
+
+  public String getStatusPeminjaman() {
+    return statusPeminjaman;
+  }
+
+  public void setStatusPeminjaman(String statusPeminjaman) {
+    this.statusPeminjaman = statusPeminjaman;
+  }
+
+
+  public String getAlasanPenolakan() {
+    return alasanPenolakan;
+  }
+
+  public void setAlasanPenolakan(String alasanPenolakan) {
+    this.alasanPenolakan = alasanPenolakan;
   }
 
 }

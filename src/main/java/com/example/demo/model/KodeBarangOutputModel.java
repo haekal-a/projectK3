@@ -1,10 +1,10 @@
 package com.example.demo.model;
 
 
-public class TbKdbarang {
+public class KodeBarangOutputModel {
 
   private String kdBarang;
-  private String namaBarang;
+  private String jenisBarang;
   private String keterangan;
 
 
@@ -17,12 +17,12 @@ public class TbKdbarang {
   }
 
 
-  public String getNamaBarang() {
-    return namaBarang;
+  public String getJenisBarang() {
+    return jenisBarang;
   }
 
-  public void setNamaBarang(String namaBarang) {
-    this.namaBarang = namaBarang;
+  public void setJenisBarang(String jenisBarang) {
+    this.jenisBarang = jenisBarang;
   }
 
 

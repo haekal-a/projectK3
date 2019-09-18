@@ -4,20 +4,11 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_kdbarang", schema = "db_bmn")
-public class TbKdbarangEntity {
+@Table(name = "kode_barang", schema = "db_simak_bmn", catalog = "")
+public class KodeBarangEntity {
     private String kdBarang;
-    private String namaBarang;
+    private String jenisBarang;
     private String keterangan;
-
-    public TbKdbarangEntity() {
-    }
-
-    public TbKdbarangEntity(String kdBarang, String namaBarang, String keterangan) {
-        this.kdBarang = kdBarang;
-        this.namaBarang = namaBarang;
-        this.keterangan = keterangan;
-    }
 
     @Id
     @Column(name = "kd_barang", nullable = false, length = 10)
@@ -30,17 +21,17 @@ public class TbKdbarangEntity {
     }
 
     @Basic
-    @Column(name = "nama_barang", nullable = false, length = 45)
-    public String getNamaBarang() {
-        return namaBarang;
+    @Column(name = "jenis_barang", nullable = false, length = 45)
+    public String getJenisBarang() {
+        return jenisBarang;
     }
 
-    public void setNamaBarang(String namaBarang) {
-        this.namaBarang = namaBarang;
+    public void setJenisBarang(String jenisBarang) {
+        this.jenisBarang = jenisBarang;
     }
 
     @Basic
-    @Column(name = "keterangan", nullable = true, length = -1)
+    @Column(name = "keterangan", nullable = true, length = 100)
     public String getKeterangan() {
         return keterangan;
     }
@@ -53,14 +44,14 @@ public class TbKdbarangEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TbKdbarangEntity that = (TbKdbarangEntity) o;
+        KodeBarangEntity that = (KodeBarangEntity) o;
         return Objects.equals(kdBarang, that.kdBarang) &&
-                Objects.equals(namaBarang, that.namaBarang) &&
+                Objects.equals(jenisBarang, that.jenisBarang) &&
                 Objects.equals(keterangan, that.keterangan);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(kdBarang, namaBarang, keterangan);
+        return Objects.hash(kdBarang, jenisBarang, keterangan);
     }
 }
