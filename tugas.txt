@@ -7,7 +7,7 @@ AjaxResponseModel -> {title: string, code: string, message: string, data Object}
 --	-> get {nip: string, token: string, role: string, dataUser: DataUser -> itu isi semua data dalam tabel pegawai}
 
 --REGISTER
---a. cekNip 
+--a. cekNip
 --	-> kirim {nip: string}
 --	-> get {user: string}, kalau tidak ada nip nya, maka balikin status code 0, dan message tidak ditemukan
 --b. register
@@ -35,13 +35,24 @@ e. edit
 1. data = idpeminjaman => get data peminjaman by id
 
 PERSETUJUAN
+query daftar persetujuan
+1.query ke tabel persetujuan join ke tabel bmn dan kode barang where status_peminjaman = 0 (menunggu konfirmasi)
+
+query count persetujuan
+1.query ke tabel persetujuan join ke tabel bmn dan kode barang where status_peminjaman = 0 (menunggu konfirmasi) => cari countnya berapa
+
 a. setuju
 1. data: idpeminjaman=> cek? status barangnya, statusnya = 1? => message: sudah dipinjam oleh orang lain.
 	berhasil? status peminjaman di tabel peminjaman = 1, status barang di tabel status barang = 1
 
-a. tolak
+b. tolak
 1. data: {idPeminjaman, alasan penolakan}, set status peminjaman = 2, insert alasan penolakan.
 
 REKAM PENGEMBALIAN
+query daftar persetujuan
+1.query ke tabel persetujuan join ke tabel bmn dan kode barang where status_peminjaman = 1 (disetujui tapi belum dikembalikan)
+
 a. rekam
-1. data = {idpeminjaman, tanggalpengembalian, kondisi }, idpeminjaman, tanggalpengembalian => set di tabel peminjaman, ditabel kondisi => set status barang = 0 dan kondisi sesuai dengan inputan admin
+1. data = {idpeminjaman, tanggalpengembalian, kondisi }, idpeminjaman, tanggalpengembalian => set di tabel peminjaman
+   dan set status_peminjaman = 3 (selesai),
+   ditabel kondisi => set status barang = 0 dan kondisi sesuai dengan inputan admin
