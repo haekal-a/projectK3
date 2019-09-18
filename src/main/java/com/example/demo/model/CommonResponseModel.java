@@ -7,6 +7,16 @@ public class CommonResponseModel {
     private String message;
     private Object data;
 
+    public CommonResponseModel() {
+    }
+
+    public CommonResponseModel(String title, String code, String message, Object data) {
+        this.title = title;
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
+
     public String getTitle() {
         return title;
     }

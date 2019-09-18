@@ -2,17 +2,18 @@ Semua return, dibungkus dalam
 AjaxResponseModel -> {title: string, code: string, message: string, data Object}
 
 
-LOGIN
-a. auth -> kirim {nip: string, pass: string}
-	-> get {nip: string, token: string, role: string, dataUser: DataUser -> itu isi semua data dalam tabel pegawai}
+--LOGIN
+--a. auth -> kirim {nip: string, pass: string}
+--	-> get {nip: string, token: string, role: string, dataUser: DataUser -> itu isi semua data dalam tabel pegawai}
 
-REGISTER
-a. cekNip 
-	-> kirim {nip: string}
-	-> get {user: string}, kalau tidak ada nip nya, maka balikin status code 0, dan message tidak ditemukan
-b. register
-	-> kirim{nip: string, pass: string}
-	-> get {message: berhasil}
+--REGISTER
+--a. cekNip 
+--	-> kirim {nip: string}
+--	-> get {user: string}, kalau tidak ada nip nya, maka balikin status code 0, dan message tidak ditemukan
+--b. register
+--	-> kirim{nip: string, pass: string}
+--	-> get {message: berhasil}
+-- BALIKAN CRM
 
 SAVE PEMINJAMAN
 a. get daftar barang yang bisa dipinjam

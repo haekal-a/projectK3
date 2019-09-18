@@ -3,7 +3,10 @@ package com.example.demo.jwt.resource;
 import com.example.demo.domain.dbpenaridesa.UserEntity;
 import com.example.demo.jwt.JwtTokenUtil;
 import com.example.demo.jwt.JwtUserDetails;
+import com.example.demo.model.CommonResponseModel;
+import com.example.demo.model.PegawaiOutputModel;
 import com.example.demo.model.UserModel;
+import com.example.demo.model.UserOutputModel;
 import com.example.demo.service.PegawaiService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,12 +79,32 @@ public class JwtAuthenticationRestController {
     // untuk insert data baru
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@RequestBody UserModel user) throws Exception {
-        UserEntity newUser = new UserEntity();
-        newUser.setUsername(user.getUsername());
-        newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-        newUser.setRole("user");
 
-        return ResponseEntity.ok(userService.saveUser(newUser));
+        // cek akun user
+        UserOutputModel output = userService.getUser(user.getUsername());
+        if (output.getUsername() == null) {
+
+            // cek validasi nip
+            PegawaiOutputModel pegawai = pegawaiService.getDataPegawai(user.getUsername());
+            if (pegawai.getNip() != null) {
+
+                UserEntity newUser = new UserEntity();
+                newUser.setUsername(user.getUsername());
+                newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+
+                if (pegawai.getSeksi().equals("Kepegawaian dan Umum")) {
+                    newUser.setRole("admin");
+                } else {
+                    newUser.setRole("user");
+                }
+
+                return ResponseEntity.ok(new CommonResponseModel("Sukses", "0", null, userService.saveUser(newUser)));
+            } else {
+                return ResponseEntity.ok(new CommonResponseModel("Gagal", "1", "Data nip tidak valid", null));
+            }
+        } else {
+            return ResponseEntity.ok(new CommonResponseModel("Gagal", "1", "Data sudah ada", null));
+        }
     }
 
     @ExceptionHandler({AuthenticationException.class})

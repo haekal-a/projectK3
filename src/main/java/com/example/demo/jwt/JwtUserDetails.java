@@ -12,7 +12,7 @@ import java.util.List;
 
 public class JwtUserDetails implements UserDetails {
 
-    private static final long serialVersionUID = 5155720064139820502L;
+  private static final long serialVersionUID = 5155720064139820502L;
 
     private final String username;
     private final String password;
@@ -35,39 +35,39 @@ public class JwtUserDetails implements UserDetails {
         return username;
     }
 
-    @JsonIgnore
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+  @JsonIgnore
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
 
-    @JsonIgnore
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+  @JsonIgnore
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
 
-    @JsonIgnore
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+  @JsonIgnore
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
 
-    @JsonIgnore
-    @Override
-    public String getPassword() {
-        return password;
-    }
+  @JsonIgnore
+  @Override
+  public String getPassword() {
+    return password;
+  }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return authorities;
+  }
 
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+  @Override
+  public boolean isEnabled() {
+    return true;
+  }
 
     public PegawaiOutputModel getPegawai() {
         return pegawai;
