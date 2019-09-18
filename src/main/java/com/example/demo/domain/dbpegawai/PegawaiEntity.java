@@ -39,7 +39,6 @@ public class PegawaiEntity {
         this.nip = nip;
     }
 
-    @Basic
     @Column(name = "Nama_Pegawai", nullable = false, length = 45)
     public String getNamaPegawai() {
         return namaPegawai;
@@ -49,7 +48,6 @@ public class PegawaiEntity {
         this.namaPegawai = namaPegawai;
     }
 
-    @Basic
     @Column(name = "SubBagian", nullable = false, length = 30)
     public String getSubBagian() {
         return subBagian;
@@ -59,7 +57,6 @@ public class PegawaiEntity {
         this.subBagian = subBagian;
     }
 
-    @Basic
     @Column(name = "Jabatan", nullable = false, length = 30)
     public String getJabatan() {
         return jabatan;
@@ -69,7 +66,6 @@ public class PegawaiEntity {
         this.jabatan = jabatan;
     }
 
-    @Basic
     @Column(name = "Alamat", nullable = false, length = 50)
     public String getAlamat() {
         return alamat;
@@ -79,7 +75,6 @@ public class PegawaiEntity {
         this.alamat = alamat;
     }
 
-    @Basic
     @Column(name = "No_Telepon", nullable = false, length = 15)
     public String getNoTelepon() {
         return noTelepon;
@@ -89,7 +84,6 @@ public class PegawaiEntity {
         this.noTelepon = noTelepon;
     }
 
-    @Basic
     @Column(name = "Alamat_Email", nullable = false, length = 50)
     public String getAlamatEmail() {
         return alamatEmail;
@@ -99,7 +93,6 @@ public class PegawaiEntity {
         this.alamatEmail = alamatEmail;
     }
 
-    @Basic
     @Column(name = "Seksi", nullable = false, length = 30)
     public String getSeksi() {
         return seksi;

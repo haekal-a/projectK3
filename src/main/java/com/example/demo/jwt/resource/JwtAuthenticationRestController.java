@@ -1,10 +1,11 @@
 package com.example.demo.jwt.resource;
 
-import com.example.demo.domain.User;
+import com.example.demo.domain.dbpenaridesa.UserEntity;
 import com.example.demo.jwt.JwtTokenUtil;
 import com.example.demo.jwt.JwtUserDetails;
 import com.example.demo.model.UserModel;
-import com.example.demo.repo.dbpenaridesa.UserRepository;
+import com.example.demo.service.PegawaiService;
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -28,20 +29,22 @@ public class JwtAuthenticationRestController {
     @Value("${jwt.http.request.header}")
     private String tokenHeader;
 
-    @Autowired
-    private UserRepository userRepo;
+    private final UserService userService;
+    private final PegawaiService pegawaiService;
+    private final AuthenticationManager authenticationManager;
+    private final JwtTokenUtil jwtTokenUtil;
+    private final UserDetailsService jwtInMemoryUserDetailsService;
+    private final PasswordEncoder bcryptEncoder;
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
-
-    @Autowired
-    private UserDetailsService jwtInMemoryUserDetailsService;
-
-    @Autowired
-    private PasswordEncoder bcryptEncoder;
+    public JwtAuthenticationRestController(UserService userService, PegawaiService pegawaiService, AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, UserDetailsService jwtInMemoryUserDetailsService, PasswordEncoder bcryptEncoder) {
+        this.userService = userService;
+        this.pegawaiService = pegawaiService;
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenUtil = jwtTokenUtil;
+        this.jwtInMemoryUserDetailsService = jwtInMemoryUserDetailsService;
+        this.bcryptEncoder = bcryptEncoder;
+    }
 
     @RequestMapping(value = "${jwt.get.token.uri}", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtTokenRequest authenticationRequest)
@@ -71,15 +74,15 @@ public class JwtAuthenticationRestController {
     }
 
     // untuk insert data baru
-    /*@RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@RequestBody UserModel user) throws Exception {
-        User newUser = new User();
+        UserEntity newUser = new UserEntity();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-        newUser.setRole(user.getRole());
+        newUser.setRole("user");
 
-        return ResponseEntity.ok(userRepo.save(newUser));
-    }*/
+        return ResponseEntity.ok(userService.saveUser(newUser));
+    }
 
     @ExceptionHandler({AuthenticationException.class})
     public ResponseEntity<String> handleAuthenticationException(AuthenticationException e) {

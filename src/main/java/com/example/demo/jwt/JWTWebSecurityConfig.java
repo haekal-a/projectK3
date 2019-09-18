@@ -59,7 +59,9 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf().disable()
             .exceptionHandling().authenticationEntryPoint(jwtUnAuthorizedResponseAuthenticationEntryPoint).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .authorizeRequests().antMatchers( "/register").permitAll() // untuk nambahin user baru
+            .authorizeRequests()
+                .antMatchers( "/register").permitAll()
+                .antMatchers("/pegawai/get/**").permitAll() // untuk nambahin user baru
             .anyRequest().authenticated();
 
        httpSecurity

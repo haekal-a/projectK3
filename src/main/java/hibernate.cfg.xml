@@ -23,8 +23,8 @@
 
         <mapping class="com.example.demo.domain.dbpegawai.PegawaiEntity"/>
         <mapping class="com.example.demo.domain.dbpenaridesa.PeminjamanEntity"/>
-        <mapping class="com.example.demo.domain.KodeBarangEntity"/>
-        <mapping class="com.example.demo.domain.MasterBmnEntity"/>
+        <mapping class="com.example.demo.domain.dbsimakbmn.KodeBarangEntity"/>
+        <mapping class="com.example.demo.domain.dbsimakbmn.MasterBmnEntity"/>
         <mapping class="com.example.demo.domain.dbpenaridesa.UserEntity"/>
         <mapping class="com.example.demo.domain.dbpenaridesa.StatusBarangEntity"/>
 

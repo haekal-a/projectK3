@@ -1,5 +1,6 @@
 package com.example.demo.jwt;
 
+import com.example.demo.model.PegawaiOutputModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,11 +16,13 @@ public class JwtUserDetails implements UserDetails {
 
     private final String username;
     private final String password;
+    private final PegawaiOutputModel pegawai;
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public JwtUserDetails(String username, String password, String role) {
+    public JwtUserDetails(String username, String password, String role, PegawaiOutputModel pegawai) {
         this.username = username;
         this.password = password;
+        this.pegawai = pegawai;
 
         List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority(role));
@@ -66,4 +69,7 @@ public class JwtUserDetails implements UserDetails {
         return true;
     }
 
+    public PegawaiOutputModel getPegawai() {
+        return pegawai;
+    }
 }

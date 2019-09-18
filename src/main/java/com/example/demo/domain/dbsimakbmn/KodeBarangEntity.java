@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.domain.dbsimakbmn;
 
 import javax.persistence.*;
 import java.util.Objects;

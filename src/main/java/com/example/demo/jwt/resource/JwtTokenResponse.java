@@ -1,5 +1,6 @@
 package com.example.demo.jwt.resource;
 
+import com.example.demo.model.PegawaiOutputModel;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
@@ -11,9 +12,10 @@ public class JwtTokenResponse implements Serializable {
   private final String token;
   private final UserDetails userDetails;
 
-    public JwtTokenResponse(String token, UserDetails userDetails) {
+    public JwtTokenResponse(String token, UserDetails userDetails ) {
         this.token = token;
         this.userDetails = userDetails;
+
     }
 
     public String getToken() {
