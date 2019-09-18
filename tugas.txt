@@ -13,7 +13,7 @@ AjaxResponseModel -> {title: string, code: string, message: string, data Object}
 --b. register
 --	-> kirim{nip: string, pass: string}
 --	-> get {message: berhasil}
--- BALIKAN CRM
+-- BALIKAN CRM --
 
 SAVE PEMINJAMAN
 a. get daftar barang yang bisa dipinjam
