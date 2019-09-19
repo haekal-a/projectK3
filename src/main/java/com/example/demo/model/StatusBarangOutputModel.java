@@ -1,37 +1,47 @@
 package com.example.demo.model;
 
 
+import java.math.BigDecimal;
+
 public class StatusBarangOutputModel {
 
-  private long idBarang;
-  private long stsBarang;
-  private long id;
+  private BigDecimal idBarang;
+  private String stsBarang;
+  private BigDecimal id;
+  private String kondisi;
 
 
-  public long getIdBarang() {
+  public BigDecimal getIdBarang() {
     return idBarang;
   }
 
-  public void setIdBarang(long idBarang) {
+  public void setIdBarang(BigDecimal idBarang) {
     this.idBarang = idBarang;
   }
 
 
-  public long getStsBarang() {
+  public String getStsBarang() {
     return stsBarang;
   }
 
-  public void setStsBarang(long stsBarang) {
+  public void setStsBarang(String stsBarang) {
     this.stsBarang = stsBarang;
   }
 
 
-  public long getId() {
+  public BigDecimal getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(BigDecimal id) {
     this.id = id;
   }
 
+  public String getKondisi() {
+    return kondisi;
+  }
+
+  public void setKondisi(String kondisi) {
+    this.kondisi = kondisi;
+  }
 }

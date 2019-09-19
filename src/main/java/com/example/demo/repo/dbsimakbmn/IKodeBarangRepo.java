@@ -8,5 +8,5 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface KodeBarangRepository extends JpaRepository<KodeBarangEntity, String> {
+public interface IKodeBarangRepo extends JpaRepository<KodeBarangEntity, String> {
 }

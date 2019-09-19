@@ -1,7 +1,5 @@
 package com.example.demo.config;
 
-import com.example.demo.domain.dbpenaridesa.UserEntity;
-import com.example.demo.repo.dbpenaridesa.UserRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;

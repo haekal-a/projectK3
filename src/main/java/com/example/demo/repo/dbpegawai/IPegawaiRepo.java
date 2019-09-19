@@ -8,6 +8,6 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface PegawaiRepository extends JpaRepository<PegawaiEntity, String> {
+public interface IPegawaiRepo extends JpaRepository<PegawaiEntity, String> {
     PegawaiEntity findByNip (String nip);
 }

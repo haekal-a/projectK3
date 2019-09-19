@@ -15,6 +15,10 @@ public class MasterBmnOutputModel {
   private String kondisi;
   private String createdBy;
   private Date createdDate;
+  private String stsBarang;
+  private String kondisiDbPenari;
+  private String jenisBarang;
+  private String keteranganDbPenari;
 
 
   public BigDecimal getId() {
@@ -93,8 +97,39 @@ public class MasterBmnOutputModel {
     return createdDate;
   }
 
-  public void setCreatedDate(java.sql.Date createdDate) {
+  public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
 
+  public String getStsBarang() {
+    return stsBarang;
+  }
+
+  public void setStsBarang(String stsBarang) {
+    this.stsBarang = stsBarang;
+  }
+
+  public String getKondisiDbPenari() {
+    return kondisiDbPenari;
+  }
+
+  public void setKondisiDbPenari(String kondisiDbPenari) {
+    this.kondisiDbPenari = kondisiDbPenari;
+  }
+
+  public String getJenisBarang() {
+    return jenisBarang;
+  }
+
+  public void setJenisBarang(String jenisBarang) {
+    this.jenisBarang = jenisBarang;
+  }
+
+  public String getKeteranganDbPenari() {
+    return keteranganDbPenari;
+  }
+
+  public void setKeteranganDbPenari(String keteranganDbPenari) {
+    this.keteranganDbPenari = keteranganDbPenari;
+  }
 }

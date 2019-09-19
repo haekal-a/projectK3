@@ -24,24 +24,23 @@ public class PegawaiController {
 
     @GetMapping(value = "pegawai/get/{nip}")
     public ResponseEntity<CommonResponseModel> cekPegawai(@PathVariable String nip) {
-        CommonResponseModel hasil = new CommonResponseModel();
+        CommonResponseModel crm = new CommonResponseModel();
         try {
             PegawaiOutputModel pegawai = pegawaiService.getDataPegawai(nip);
-            hasil.setTitle("Get Pegawai");
+            crm.setTitle("Get Pegawai");
             if (pegawai.getNip() != null) {
-                hasil.setCode("1");
-                hasil.setMessage("Data pegawai ditemukan disistem kepegawaian");
-                hasil.setData(pegawai);
+                crm.setCode("1");
+                crm.setMessage("Data pegawai ditemukan disistem kepegawaian");
+                crm.setData(pegawai);
             } else {
-                hasil.setCode("0");
-                hasil.setMessage("Data pegawai tidak ditemukan disistem kepegawaian");
-                hasil.setData(null);
+                crm.setCode("0");
+                crm.setMessage("Data pegawai tidak ditemukan disistem kepegawaian");
             }
 
-            return ResponseEntity.ok(hasil);
+            return ResponseEntity.ok(crm);
 
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new CommonResponseModel("Get Pegawai", "0", e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

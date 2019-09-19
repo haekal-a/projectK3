@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class PeminjamanOutputModel {
 
@@ -10,13 +11,13 @@ public class PeminjamanOutputModel {
   private String nip;
   private String namaPeminjam;
   private String keperluan;
-  private java.sql.Date tanggalPinjam;
-  private java.sql.Date tanggalKembali;
-  private java.sql.Date tanggalPersetujuan;
-  private java.sql.Date jatuhTempoPengembalian;
+  private Date tanggalPinjam;
+  private Date tanggalKembali;
+  private Date tanggalPersetujuan;
+  private Date jatuhTempoPengembalian;
   private String createdBy;
   private String approvedBy;
-  private java.sql.Date createdDate;
+  private Date createdDate;
   private String statusPeminjaman;
   private String alasanPenolakan;
 
@@ -66,7 +67,7 @@ public class PeminjamanOutputModel {
   }
 
 
-  public java.sql.Date getTanggalPinjam() {
+  public Date getTanggalPinjam() {
     return tanggalPinjam;
   }
 
@@ -75,7 +76,7 @@ public class PeminjamanOutputModel {
   }
 
 
-  public java.sql.Date getTanggalKembali() {
+  public Date getTanggalKembali() {
     return tanggalKembali;
   }
 
@@ -84,7 +85,7 @@ public class PeminjamanOutputModel {
   }
 
 
-  public java.sql.Date getTanggalPersetujuan() {
+  public Date getTanggalPersetujuan() {
     return tanggalPersetujuan;
   }
 
@@ -93,7 +94,7 @@ public class PeminjamanOutputModel {
   }
 
 
-  public java.sql.Date getJatuhTempoPengembalian() {
+  public Date getJatuhTempoPengembalian() {
     return jatuhTempoPengembalian;
   }
 
@@ -120,7 +121,7 @@ public class PeminjamanOutputModel {
   }
 
 
-  public java.sql.Date getCreatedDate() {
+  public Date getCreatedDate() {
     return createdDate;
   }
 

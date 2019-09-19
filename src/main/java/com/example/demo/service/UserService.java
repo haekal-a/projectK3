@@ -2,27 +2,27 @@ package com.example.demo.service;
 
 import com.example.demo.domain.dbpenaridesa.UserEntity;
 import com.example.demo.model.UserOutputModel;
-import com.example.demo.repo.dbpenaridesa.UserRepository;
+import com.example.demo.repo.dbpenaridesa.IUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class UserService {
 
-    private UserRepository userRepository;
+    private IUserRepo userRepo;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserService(IUserRepo userRepo) {
+        this.userRepo = userRepo;
     }
 
     public UserEntity saveUser (UserEntity user){
-        return userRepository.save(user);
+        return userRepo.save(user);
     }
 
     public UserOutputModel getUser(String username){
         UserOutputModel output = new UserOutputModel();
-        UserEntity data = userRepository.findByUsername(username);
+        UserEntity data = userRepo.findByUsername(username);
         if(data != null){
             output.setUsername(data.getUsername());
             output.setPassword(data.getPassword());

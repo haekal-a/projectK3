@@ -4,8 +4,7 @@ package com.example.demo.jwt;
 
 import com.example.demo.domain.dbpenaridesa.UserEntity;
 import com.example.demo.model.PegawaiOutputModel;
-import com.example.demo.repo.dbpegawai.PegawaiRepository;
-import com.example.demo.repo.dbpenaridesa.UserRepository;
+import com.example.demo.repo.dbpenaridesa.IUserRepo;
 import com.example.demo.service.PegawaiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,20 +16,20 @@ import org.springframework.stereotype.Service;
 public class JwtInMemoryUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private IUserRepo userRepo;
 
     @Autowired
     private PegawaiService pegawaiService;
 
     @Autowired
-    public JwtInMemoryUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public JwtInMemoryUserDetailsService(IUserRepo userRepo) {
+        this.userRepo = userRepo;
     }
 
     // code ini menggunakan nama user dari database
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity user = userRepository.findByUsername(username);
+        UserEntity user = userRepo.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }

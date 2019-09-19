@@ -16,9 +16,10 @@ AjaxResponseModel -> {title: string, code: string, message: string, data Object}
 -- BALIKAN CRM --
 
 SAVE PEMINJAMAN
-a. get daftar barang yang bisa dipinjam
-1. join tabel bmn + status barang
-2. query where, status barang = 0(tersedia) dan kondisi = 0(baik)
+--a. get daftar barang yang bisa dipinjam
+--1. join tabel bmn + status barang
+--2. query where, status barang = 1(tersedia) dan kondisi = 0(baik)
+-- api value = "barang/get" --
 
 b. save + edit
 1. siapin model buat tampungan save
