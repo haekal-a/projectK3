@@ -4,12 +4,21 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class PeminjamanInputModel {
+    private BigDecimal idPeminjaman;
     private BigDecimal idBarang;
     private String namaPeminjam;
     private String nip;
     private String keperluan;
     private Date tanggalpinjam;
     private Date tanggaljatuhtempo;
+
+    public BigDecimal getIdPeminjaman() {
+        return idPeminjaman;
+    }
+
+    public void setIdPeminjaman(BigDecimal idPeminjaman) {
+        this.idPeminjaman = idPeminjaman;
+    }
 
     public BigDecimal getIdBarang() {
         return idBarang;

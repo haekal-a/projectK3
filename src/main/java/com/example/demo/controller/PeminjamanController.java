@@ -59,4 +59,21 @@ public class PeminjamanController {
             return new ResponseEntity<>(new CommonResponseModel("Get Peminjaman", "0", e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @RequestMapping(value = "pinjam/edit", method = RequestMethod.POST)
+    public ResponseEntity<CommonResponseModel> editPeminjaman (@RequestBody PeminjamanInputModel pim){
+        CommonResponseModel crm = new CommonResponseModel();
+        crm.setTitle("Save peminjaman");
+        try {
+            peminjamanService.editPeminjaman(pim);
+            crm.setCode("1");
+            crm.setMessage("Data berhasil diubah");
+            return ResponseEntity.ok(crm);
+        } catch (Exception e){
+            e.printStackTrace();
+            crm.setCode("0");
+            crm.setMessage(e.getMessage());
+            return new ResponseEntity<>(crm, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

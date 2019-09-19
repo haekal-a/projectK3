@@ -55,4 +55,17 @@ public class PeminjamanService {
         }
         return output;
     }
+
+    public void editPeminjaman(PeminjamanInputModel pim) {
+        PeminjamanEntity pinjam = peminjamanRepo.getOne(pim.getIdPeminjaman());
+        pinjam.setIdPeminjaman(pim.getIdPeminjaman());
+        pinjam.setIdBarang(pim.getIdBarang());
+        pinjam.setNip(pim.getNip());
+        pinjam.setNamaPeminjam(pim.getNamaPeminjam());
+        pinjam.setKeperluan(pim.getKeperluan());
+        pinjam.setTanggalPinjam(pim.getTanggalpinjam());
+        pinjam.setJatuhTempoPengembalian(pim.getTanggaljatuhtempo());
+        pinjam.setCreatedBy(pim.getNip());
+        peminjamanRepo.save(pinjam);
+    }
 }

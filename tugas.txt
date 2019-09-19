@@ -27,6 +27,7 @@ b. save + edit
 -- 3. set status peminjaman = 0(menunggu konfirmasi)
 -- api value = "/pinjam/save" --
 -- api value = "pinjam/get/{id}" --
+-- api value = "/pinjam/edit" --
 
 c. daftar konfirmasi
 1. query = tabel peminjaman query by nip, where status peminjaman = 0;
