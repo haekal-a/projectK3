@@ -2,7 +2,7 @@ package com.example.demo.domain.dbpenaridesa;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -45,6 +45,7 @@ public class PeminjamanEntity {
 
     @Id
     @Column(name = "id_peminjaman", nullable = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public BigDecimal getIdPeminjaman() {
         return idPeminjaman;
     }
