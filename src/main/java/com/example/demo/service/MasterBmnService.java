@@ -37,6 +37,7 @@ public class MasterBmnService {
             output.setCreatedDate((Date) o[8]);
             output.setStsBarang(String.valueOf(o[9]));
             output.setKondisiDbPenari(String.valueOf(o[10]));
+            output.setJenisBarang((String) o[11]);
             list.add(output);
         }
         return list;
