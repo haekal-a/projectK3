@@ -32,7 +32,7 @@ public class MasterBmnRepoImpl implements IMasterBmnRepo, JpaRepository<MasterBm
                 "        JOIN\n" +
                 "    db_penari_desa.status_barang b ON a.id = b.id_barang\n" +
                 "WHERE\n" +
-                "    a.Kondisi = '0' AND b.sts_barang = '1'";
+                "    b.Kondisi = '0' AND b.sts_barang = '1'";
         Query query = entityManager.createNativeQuery(s);
         return query.getResultList();
     }
