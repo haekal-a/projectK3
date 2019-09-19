@@ -71,7 +71,7 @@ public class PeminjamanOutputModel {
     return tanggalPinjam;
   }
 
-  public void setTanggalPinjam(java.sql.Date tanggalPinjam) {
+  public void setTanggalPinjam(Date tanggalPinjam) {
     this.tanggalPinjam = tanggalPinjam;
   }
 
@@ -80,7 +80,7 @@ public class PeminjamanOutputModel {
     return tanggalKembali;
   }
 
-  public void setTanggalKembali(java.sql.Date tanggalKembali) {
+  public void setTanggalKembali(Date tanggalKembali) {
     this.tanggalKembali = tanggalKembali;
   }
 
@@ -89,7 +89,7 @@ public class PeminjamanOutputModel {
     return tanggalPersetujuan;
   }
 
-  public void setTanggalPersetujuan(java.sql.Date tanggalPersetujuan) {
+  public void setTanggalPersetujuan(Date tanggalPersetujuan) {
     this.tanggalPersetujuan = tanggalPersetujuan;
   }
 
@@ -98,7 +98,7 @@ public class PeminjamanOutputModel {
     return jatuhTempoPengembalian;
   }
 
-  public void setJatuhTempoPengembalian(java.sql.Date jatuhTempoPengembalian) {
+  public void setJatuhTempoPengembalian(Date jatuhTempoPengembalian) {
     this.jatuhTempoPengembalian = jatuhTempoPengembalian;
   }
 
@@ -125,7 +125,7 @@ public class PeminjamanOutputModel {
     return createdDate;
   }
 
-  public void setCreatedDate(java.sql.Date createdDate) {
+  public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
 
