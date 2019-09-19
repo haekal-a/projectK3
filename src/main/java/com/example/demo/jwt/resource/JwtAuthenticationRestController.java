@@ -98,12 +98,12 @@ public class JwtAuthenticationRestController {
                     newUser.setRole("user");
                 }
 
-                return ResponseEntity.ok(new CommonResponseModel("Sukses", "0", null, userService.saveUser(newUser)));
+                return ResponseEntity.ok(new CommonResponseModel("Sukses", "1", null, userService.saveUser(newUser)));
             } else {
-                return ResponseEntity.ok(new CommonResponseModel("Gagal", "1", "Data nip tidak valid", null));
+                return ResponseEntity.ok(new CommonResponseModel("Gagal", "0", "Data nip tidak valid", null));
             }
         } else {
-            return ResponseEntity.ok(new CommonResponseModel("Gagal", "1", "Data sudah ada", null));
+            return ResponseEntity.ok(new CommonResponseModel("Gagal", "0", "Data sudah ada", null));
         }
     }
 

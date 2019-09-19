@@ -34,6 +34,7 @@ d. hapus case peminjaman
 
 e. edit
 1. data = idpeminjaman => get data peminjaman by id
+2. return data yang akan diedit.
 
 PERSETUJUAN
 query daftar persetujuan
