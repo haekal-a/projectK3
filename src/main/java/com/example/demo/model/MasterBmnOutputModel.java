@@ -132,4 +132,5 @@ public class MasterBmnOutputModel {
   public void setKeteranganDbPenari(String keteranganDbPenari) {
     this.keteranganDbPenari = keteranganDbPenari;
   }
+
 }

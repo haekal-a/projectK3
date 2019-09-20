@@ -2,11 +2,11 @@ Semua return, dibungkus dalam
 AjaxResponseModel -> {title: string, code: string, message: string, data Object}
 
 
---LOGIN
+--LOGIN -- DONE
 --a. auth -> kirim {nip: string, pass: string}
 --	-> get {nip: string, token: string, role: string, dataUser: DataUser -> itu isi semua data dalam tabel pegawai}
 
---REGISTER
+--REGISTER -- DONE
 --a. cekNip
 --	-> kirim {nip: string}
 --	-> get {user: string}, kalau tidak ada nip nya, maka balikin status code 0, dan message tidak ditemukan
@@ -15,23 +15,26 @@ AjaxResponseModel -> {title: string, code: string, message: string, data Object}
 --	-> get {message: berhasil}
 -- BALIKAN CRM --
 
-SAVE PEMINJAMAN
+SAVE PEMINJAMAN -- DONE
 --a. get daftar barang yang bisa dipinjam
 --1. join tabel bmn + status barang
 --2. query where, status barang = 1(tersedia) dan kondisi = 0(baik)
 -- api value = "barang/get" --
 
--- b. save + edit
+-- b. save + edit -- DONE
 -- 1. siapin model buat tampungan save
 -- 2. data yang dikirim = {idBarang: BigDecimal, namaPeminjam: string, nip: string, keperluan: string, tanggalpinjam: date, tanggaljatuhtempo: date}
 -- 3. set status peminjaman = 0(menunggu konfirmasi)
 -- api value = "/pinjam/save" --
--- api value = "pinjam/get/id/{id}" --
+-- api value = "pinjam/get/{id}" --
 -- api value = "/pinjam/edit" --
 
---c. daftar konfirmasi
+--c. daftar konfirmasi -- DONE
 --1. query = tabel peminjaman query by nip, where status peminjaman = 0;
--- api value = "pinjam/get/nip/{nip}" --
+-- api value = "pinjam/get/daftarkonfirmasi/{nip}" --
+REVISI
+1. selain id barang, tambahkan juga data dari tabel bmn => { jenisBarang(query dari tabel kode_barang), namaBarang, MerkBarang, Keterangan, Kondisi(dari tabel status barang) }
+2.sortir data by created date, descending.
 
 d. hapus case peminjaman
 1. data = idpeminjaman => hapus

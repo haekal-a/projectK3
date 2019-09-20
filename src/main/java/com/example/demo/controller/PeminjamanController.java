@@ -39,7 +39,7 @@ public class PeminjamanController {
         }
     }
 
-    @GetMapping(value = "pinjam/get/id/{id}")
+    @GetMapping(value = "pinjam/get/{id}")
     public ResponseEntity<CommonResponseModel> getPeminjamanById(@PathVariable BigDecimal id) {
         CommonResponseModel crm = new CommonResponseModel();
         try {
@@ -78,7 +78,7 @@ public class PeminjamanController {
         }
     }
 
-    @GetMapping(value = "pinjam/get/nip/{nip}")
+    @GetMapping(value = "pinjam/get/daftarkonfirmasi/{nip}")
     public ResponseEntity<CommonResponseModel> getListPeminjamanByNip(@PathVariable String nip) {
         CommonResponseModel crm = new CommonResponseModel();
         try {
