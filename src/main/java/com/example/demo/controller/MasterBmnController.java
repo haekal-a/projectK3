@@ -29,7 +29,7 @@ public class MasterBmnController {
         try {
             List<MasterBmnOutputModel> mbom = masterBmnService.getBarangByKondisiAndStatus();
             crm.setTitle("Get Barang");
-            if (mbom.size() != 0) {
+            if (mbom.size() > 0) {
                 crm.setCode("1");
                 crm.setMessage("Data Barang ditemukan di SIMAK BMN");
                 crm.setData(mbom);

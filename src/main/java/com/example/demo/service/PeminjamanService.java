@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class PeminjamanService {
@@ -34,7 +36,7 @@ public class PeminjamanService {
         peminjamanRepo.save(pinjam);
     }
 
-    public PeminjamanOutputModel getPeminjaman(BigDecimal id) {
+    public PeminjamanOutputModel getPeminjamanById(BigDecimal id) {
         PeminjamanOutputModel output = new PeminjamanOutputModel();
         PeminjamanEntity data = peminjamanRepo.getOne(id);
         if (data != null){
@@ -67,5 +69,29 @@ public class PeminjamanService {
         pinjam.setJatuhTempoPengembalian(pim.getTanggaljatuhtempo());
         pinjam.setCreatedBy(pim.getNip());
         peminjamanRepo.save(pinjam);
+    }
+
+    public List<PeminjamanOutputModel> getListPeminjamanByNipAndStatusPeminjaman(String nip, String statusPeminjaman) {
+        List<PeminjamanOutputModel> output = new ArrayList<>();
+        List<PeminjamanEntity> list = peminjamanRepo.getListPeminjamanByNipAndStatusPeminjaman(nip, statusPeminjaman);
+        for(PeminjamanEntity data : list){
+            PeminjamanOutputModel pom = new PeminjamanOutputModel();
+            pom.setIdPeminjaman(data.getIdPeminjaman());
+            pom.setIdBarang(data.getIdBarang());
+            pom.setNip(data.getNip());
+            pom.setNamaPeminjam(data.getNamaPeminjam());
+            pom.setKeperluan(data.getKeperluan());
+            pom.setTanggalPinjam(data.getTanggalPinjam());
+            pom.setTanggalKembali(data.getTanggalKembali());
+            pom.setTanggalPersetujuan(data.getTanggalPersetujuan());
+            pom.setJatuhTempoPengembalian(data.getJatuhTempoPengembalian());
+            pom.setCreatedBy(data.getCreatedBy());
+            pom.setApprovedBy(data.getApprovedBy());
+            pom.setCreatedDate(data.getCreatedDate());
+            pom.setStatusPeminjaman(data.getStatusPeminjaman());
+            pom.setAlasanPenolakan(data.getAlasanPenolakan());
+            output.add(pom);
+        }
+        return output;
     }
 }

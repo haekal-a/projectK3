@@ -21,16 +21,17 @@ SAVE PEMINJAMAN
 --2. query where, status barang = 1(tersedia) dan kondisi = 0(baik)
 -- api value = "barang/get" --
 
-b. save + edit
+-- b. save + edit
 -- 1. siapin model buat tampungan save
 -- 2. data yang dikirim = {idBarang: BigDecimal, namaPeminjam: string, nip: string, keperluan: string, tanggalpinjam: date, tanggaljatuhtempo: date}
 -- 3. set status peminjaman = 0(menunggu konfirmasi)
 -- api value = "/pinjam/save" --
--- api value = "pinjam/get/{id}" --
+-- api value = "pinjam/get/id/{id}" --
 -- api value = "/pinjam/edit" --
 
-c. daftar konfirmasi
-1. query = tabel peminjaman query by nip, where status peminjaman = 0;
+--c. daftar konfirmasi
+--1. query = tabel peminjaman query by nip, where status peminjaman = 0;
+-- api value = "pinjam/get/nip/{nip}" --
 
 d. hapus case peminjaman
 1. data = idpeminjaman => hapus
