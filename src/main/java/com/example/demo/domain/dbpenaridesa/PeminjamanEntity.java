@@ -95,6 +95,7 @@ public class PeminjamanEntity {
     }
 
     @Basic
+    @Temporal(TemporalType.DATE)
     @Column(name = "tanggal_pinjam", nullable = false)
     public Date getTanggalPinjam() {
         return tanggalPinjam;
@@ -105,6 +106,7 @@ public class PeminjamanEntity {
     }
 
     @Basic
+    @Temporal(TemporalType.DATE)
     @Column(name = "tanggal_kembali", nullable = false)
     public Date getTanggalKembali() {
         return tanggalKembali;
@@ -115,6 +117,7 @@ public class PeminjamanEntity {
     }
 
     @Basic
+    @Temporal(TemporalType.DATE)
     @Column(name = "tanggal_persetujuan", nullable = false)
     public Date getTanggalPersetujuan() {
         return tanggalPersetujuan;
@@ -125,6 +128,7 @@ public class PeminjamanEntity {
     }
 
     @Basic
+    @Temporal(TemporalType.DATE)
     @Column(name = "jatuh_tempo_pengembalian", nullable = false)
     public Date getJatuhTempoPengembalian() {
         return jatuhTempoPengembalian;
@@ -155,6 +159,7 @@ public class PeminjamanEntity {
     }
 
     @Basic
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_date", nullable = false)
     public Date getCreatedDate() {
         return createdDate;

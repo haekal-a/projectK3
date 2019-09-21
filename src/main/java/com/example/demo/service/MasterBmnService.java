@@ -2,8 +2,8 @@ package com.example.demo.service;
 
 import com.example.demo.model.MasterBmnOutputModel;
 import com.example.demo.repo.dbsimakbmn.IMasterBmnRepo;
+import com.example.demo.repo.dbsimakbmn.IMasterBmnRepoCustom;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -15,15 +15,17 @@ import java.util.List;
 public class MasterBmnService {
 
     private IMasterBmnRepo masterBmnRepo;
+    private IMasterBmnRepoCustom masterBmnRepoCustom;
 
     @Autowired
-    public MasterBmnService(@Qualifier("masterBmnRepoImpl") IMasterBmnRepo masterBmnRepo){
+    public MasterBmnService(IMasterBmnRepo masterBmnRepo, IMasterBmnRepoCustom masterBmnRepoCustom){
         this.masterBmnRepo = masterBmnRepo;
+        this.masterBmnRepoCustom = masterBmnRepoCustom;
     }
 
     public List<MasterBmnOutputModel> getBarangByKondisiAndStatus (){
         List<MasterBmnOutputModel> list = new ArrayList<>();
-        List<Object[]> data = masterBmnRepo.getBarangByKondisiAndStatus();
+        List<Object[]> data = masterBmnRepoCustom.getBarangByKondisiAndStatus();
         for (Object[] o : data){
             MasterBmnOutputModel output = new MasterBmnOutputModel();
             output.setId(new BigDecimal((Integer) o[0]));

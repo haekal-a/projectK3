@@ -32,16 +32,17 @@ SAVE PEMINJAMAN -- DONE
 --c. daftar konfirmasi -- DONE
 --1. query = tabel peminjaman query by nip, where status peminjaman = 0;
 -- api value = "pinjam/get/daftarkonfirmasi/{nip}" --
-REVISI
-1. selain id barang, tambahkan juga data dari tabel bmn => { jenisBarang(query dari tabel kode_barang), namaBarang, MerkBarang, Keterangan, Kondisi(dari tabel status barang) }
-2.sortir data by created date, descending.
+-- REVISI
+-- 1. selain id barang, tambahkan juga data dari tabel bmn => { jenisBarang(query dari tabel kode_barang), namaBarang, MerkBarang, Keterangan, Kondisi(dari tabel status barang) }
+-- 2.sortir data by created date, descending.
 
-d. hapus case peminjaman
-1. data = idpeminjaman => hapus
+-- d. hapus case peminjaman
+-- 1. data = idpeminjaman => hapus
 
-e. edit
-1. data = idpeminjaman => get data peminjaman by id
-2. return data yang akan diedit.
+-- e. edit
+-- 1. data = idpeminjaman => get data peminjaman by id
+-- 2. return data yang akan diedit.
+-- lihat line 29-28
 
 PERSETUJUAN
 query daftar persetujuan

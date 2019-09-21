@@ -20,6 +20,11 @@ public class PeminjamanOutputModel {
   private Date createdDate;
   private String statusPeminjaman;
   private String alasanPenolakan;
+  private String jenisBarang;
+  private String namaBarang;
+  private String merkBarang;
+  private String keterangan;
+  private String kondisi;
 
 
   public BigDecimal getIdPeminjaman() {
@@ -147,4 +152,43 @@ public class PeminjamanOutputModel {
     this.alasanPenolakan = alasanPenolakan;
   }
 
+  public String getJenisBarang() {
+    return jenisBarang;
+  }
+
+  public void setJenisBarang(String jenisBarang) {
+    this.jenisBarang = jenisBarang;
+  }
+
+  public String getNamaBarang() {
+    return namaBarang;
+  }
+
+  public void setNamaBarang(String namaBarang) {
+    this.namaBarang = namaBarang;
+  }
+
+  public String getMerkBarang() {
+    return merkBarang;
+  }
+
+  public void setMerkBarang(String merkBarang) {
+    this.merkBarang = merkBarang;
+  }
+
+  public String getKeterangan() {
+    return keterangan;
+  }
+
+  public void setKeterangan(String keterangan) {
+    this.keterangan = keterangan;
+  }
+
+  public String getKondisi() {
+    return kondisi;
+  }
+
+  public void setKondisi(String kondisi) {
+    this.kondisi = kondisi;
+  }
 }

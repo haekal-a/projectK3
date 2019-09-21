@@ -2,7 +2,7 @@ package com.example.demo.domain.dbsimakbmn;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -114,6 +114,7 @@ public class MasterBmnEntity {
     }
 
     @Basic
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "Created_Date", nullable = false)
     public Date getCreatedDate() {
         return createdDate;

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -19,12 +20,12 @@ public class PeminjamanController {
     private PeminjamanService peminjamanService;
 
     @Autowired
-    public PeminjamanController (PeminjamanService peminjamanService){
+    public PeminjamanController(PeminjamanService peminjamanService) {
         this.peminjamanService = peminjamanService;
     }
 
     @RequestMapping(value = "pinjam/save", method = RequestMethod.POST)
-    public ResponseEntity<CommonResponseModel> savePeminjaman (@RequestBody PeminjamanInputModel pim){
+    public ResponseEntity<CommonResponseModel> savePeminjaman(@RequestBody PeminjamanInputModel pim) {
         CommonResponseModel crm = new CommonResponseModel();
         crm.setTitle("Save peminjaman");
         try {
@@ -32,7 +33,7 @@ public class PeminjamanController {
             crm.setCode("1");
             crm.setMessage("Data berhasil disimpan");
             return ResponseEntity.ok(crm);
-        } catch (Exception e){
+        } catch (Exception e) {
             crm.setCode("0");
             crm.setMessage(e.getMessage());
             return new ResponseEntity<>(crm, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -45,24 +46,20 @@ public class PeminjamanController {
         try {
             PeminjamanOutputModel pom = peminjamanService.getPeminjamanById(id);
             crm.setTitle("Get Peminjaman");
-            if (pom.getNip() != null) {
-                crm.setCode("1");
-                crm.setMessage("Data ditemukan");
-                crm.setData(pom);
-            } else {
-                crm.setCode("0");
-                crm.setMessage("Data tidak ditemukan");
-            }
-
+            crm.setCode("1");
+            crm.setMessage("Data ditemukan");
+            crm.setData(pom);
             return ResponseEntity.ok(crm);
 
+        } catch (EntityNotFoundException nfe) {
+            return ResponseEntity.ok(new CommonResponseModel("Get Peminjaman", "0", "Data tidak ditemukan", null));
         } catch (Exception e) {
             return new ResponseEntity<>(new CommonResponseModel("Get Peminjaman", "0", e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @RequestMapping(value = "pinjam/edit", method = RequestMethod.POST)
-    public ResponseEntity<CommonResponseModel> editPeminjaman (@RequestBody PeminjamanInputModel pim){
+    public ResponseEntity<CommonResponseModel> editPeminjaman(@RequestBody PeminjamanInputModel pim) {
         CommonResponseModel crm = new CommonResponseModel();
         crm.setTitle("Save peminjaman");
         try {
@@ -70,7 +67,7 @@ public class PeminjamanController {
             crm.setCode("1");
             crm.setMessage("Data berhasil diubah");
             return ResponseEntity.ok(crm);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             crm.setCode("0");
             crm.setMessage(e.getMessage());
@@ -82,7 +79,7 @@ public class PeminjamanController {
     public ResponseEntity<CommonResponseModel> getListPeminjamanByNip(@PathVariable String nip) {
         CommonResponseModel crm = new CommonResponseModel();
         try {
-            List<PeminjamanOutputModel> poms = peminjamanService.getListPeminjamanByNipAndStatusPeminjaman(nip, "0");
+            List<PeminjamanOutputModel> poms = peminjamanService.getListPinjamBarangByNipAndStatusPeminjaman(nip, "0");
             crm.setTitle("Get Peminjaman");
             if (poms.size() > 0) {
                 crm.setCode("1");
@@ -97,6 +94,22 @@ public class PeminjamanController {
 
         } catch (Exception e) {
             return new ResponseEntity<>(new CommonResponseModel("Get Peminjaman", "0", e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "pinjam/delete/{id}", method = RequestMethod.POST)
+    public ResponseEntity<CommonResponseModel> deletePeminjaman(@PathVariable BigDecimal id) {
+        CommonResponseModel crm = new CommonResponseModel();
+        crm.setTitle("Delete peminjaman");
+        try {
+            peminjamanService.deletePeminjaman(id);
+            crm.setCode("1");
+            crm.setMessage("Data berhasil dihapus");
+            return ResponseEntity.ok(crm);
+        } catch (Exception e) {
+            crm.setCode("0");
+            crm.setMessage(e.getMessage());
+            return new ResponseEntity<>(crm, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
