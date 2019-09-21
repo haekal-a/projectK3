@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.MasterBmnOutputModel;
+import com.example.demo.model.BarangOutputModel;
 import com.example.demo.repo.dbsimakbmn.IMasterBmnRepo;
 import com.example.demo.repo.dbsimakbmn.IMasterBmnRepoCustom;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,22 +12,22 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class MasterBmnService {
+public class BarangService {
 
     private IMasterBmnRepo masterBmnRepo;
     private IMasterBmnRepoCustom masterBmnRepoCustom;
 
     @Autowired
-    public MasterBmnService(IMasterBmnRepo masterBmnRepo, IMasterBmnRepoCustom masterBmnRepoCustom){
+    public BarangService(IMasterBmnRepo masterBmnRepo, IMasterBmnRepoCustom masterBmnRepoCustom){
         this.masterBmnRepo = masterBmnRepo;
         this.masterBmnRepoCustom = masterBmnRepoCustom;
     }
 
-    public List<MasterBmnOutputModel> getBarangByKondisiAndStatus (){
-        List<MasterBmnOutputModel> list = new ArrayList<>();
-        List<Object[]> data = masterBmnRepoCustom.getBarangByKondisiAndStatus();
+    public List<BarangOutputModel> getBarangByKondisiAndStatus (String kondisi, String status){
+        List<BarangOutputModel> list = new ArrayList<>();
+        List<Object[]> data = masterBmnRepoCustom.getBarangByKondisiAndStatus(kondisi, status);
         for (Object[] o : data){
-            MasterBmnOutputModel output = new MasterBmnOutputModel();
+            BarangOutputModel output = new BarangOutputModel();
             output.setId(new BigDecimal((Integer) o[0]));
             output.setKdBarang((String) o[1]);
             output.setNamaBarang((String) o[2]);

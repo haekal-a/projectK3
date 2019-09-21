@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping(value = "pinjam")
 public class PeminjamanController {
 
     private PeminjamanService peminjamanService;
@@ -24,7 +25,7 @@ public class PeminjamanController {
         this.peminjamanService = peminjamanService;
     }
 
-    @RequestMapping(value = "pinjam/save", method = RequestMethod.POST)
+    @RequestMapping(value = "save", method = RequestMethod.POST)
     public ResponseEntity<CommonResponseModel> savePeminjaman(@RequestBody PeminjamanInputModel pim) {
         CommonResponseModel crm = new CommonResponseModel();
         crm.setTitle("Save peminjaman");
@@ -40,7 +41,7 @@ public class PeminjamanController {
         }
     }
 
-    @GetMapping(value = "pinjam/get/{id}")
+    @GetMapping(value = "get/{id}")
     public ResponseEntity<CommonResponseModel> getPeminjamanById(@PathVariable BigDecimal id) {
         CommonResponseModel crm = new CommonResponseModel();
         try {
@@ -49,16 +50,17 @@ public class PeminjamanController {
             crm.setCode("1");
             crm.setMessage("Data ditemukan");
             crm.setData(pom);
+            crm.setTotalData((long) 1);
             return ResponseEntity.ok(crm);
 
         } catch (EntityNotFoundException nfe) {
-            return ResponseEntity.ok(new CommonResponseModel("Get Peminjaman", "0", "Data tidak ditemukan", null));
+            return ResponseEntity.ok(new CommonResponseModel("Get Peminjaman", "0", "Data tidak ditemukan"));
         } catch (Exception e) {
-            return new ResponseEntity<>(new CommonResponseModel("Get Peminjaman", "0", e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new CommonResponseModel("Get Peminjaman", "0", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @RequestMapping(value = "pinjam/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "edit", method = RequestMethod.POST)
     public ResponseEntity<CommonResponseModel> editPeminjaman(@RequestBody PeminjamanInputModel pim) {
         CommonResponseModel crm = new CommonResponseModel();
         crm.setTitle("Save peminjaman");
@@ -75,16 +77,18 @@ public class PeminjamanController {
         }
     }
 
-    @GetMapping(value = "pinjam/get/daftarkonfirmasi/{nip}")
-    public ResponseEntity<CommonResponseModel> getListPeminjamanByNip(@PathVariable String nip) {
+    @GetMapping(value = "get/daftarkonfirmasi/{nip}")
+    public ResponseEntity<CommonResponseModel> getDaftarKonfirmasiByNip(@PathVariable String nip) {
         CommonResponseModel crm = new CommonResponseModel();
         try {
+            // Daftar konfirmasi = getDaftarPeminjaman where status peminjaman = 0 (Menunggu konfirmasi)
             List<PeminjamanOutputModel> poms = peminjamanService.getListPinjamBarangByNipAndStatusPeminjaman(nip, "0");
             crm.setTitle("Get Peminjaman");
             if (poms.size() > 0) {
                 crm.setCode("1");
                 crm.setMessage("Data ditemukan");
                 crm.setData(poms);
+                crm.setTotalData((long) poms.size());
             } else {
                 crm.setCode("0");
                 crm.setMessage("Data tidak ditemukan");
@@ -93,11 +97,11 @@ public class PeminjamanController {
             return ResponseEntity.ok(crm);
 
         } catch (Exception e) {
-            return new ResponseEntity<>(new CommonResponseModel("Get Peminjaman", "0", e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new CommonResponseModel("Get Peminjaman", "0", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @RequestMapping(value = "pinjam/delete/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.POST)
     public ResponseEntity<CommonResponseModel> deletePeminjaman(@PathVariable BigDecimal id) {
         CommonResponseModel crm = new CommonResponseModel();
         crm.setTitle("Delete peminjaman");

@@ -16,7 +16,7 @@ public class MasterBmnRepoCustomImpl implements IMasterBmnRepoCustom {
     private EntityManager entityManager;
 
     @Override
-    public List<Object[]> getBarangByKondisiAndStatus() {
+    public List<Object[]> getBarangByKondisiAndStatus(String kondisi, String status) {
         String s = "SELECT \n" +
                 "    a.*, b.jenis_barang\n" +
                 "FROM\n" +
@@ -26,10 +26,11 @@ public class MasterBmnRepoCustomImpl implements IMasterBmnRepoCustom {
                 "        db_simak_bmn.master_bmn a\n" +
                 "    JOIN db_penari_desa.status_barang b ON a.id = b.id_barang\n" +
                 "    WHERE\n" +
-                "        b.Kondisi = '0' AND b.sts_barang = '1') a\n" +
+                "        b.Kondisi = ? AND b.sts_barang = ?) a\n" +
                 "        JOIN\n" +
                 "    db_simak_bmn.kode_barang b ON a.kd_barang = b.kd_barang";
         Query query = entityManager.createNativeQuery(s);
+        query.setParameter(1, kondisi).setParameter(2, status);
         return query.getResultList();
     }
 }

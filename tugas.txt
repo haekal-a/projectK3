@@ -19,15 +19,15 @@ SAVE PEMINJAMAN -- DONE
 --a. get daftar barang yang bisa dipinjam
 --1. join tabel bmn + status barang
 --2. query where, status barang = 1(tersedia) dan kondisi = 0(baik)
--- api value = "barang/get" --
+-h- api value = "barang/get" --
 
 -- b. save + edit -- DONE
 -- 1. siapin model buat tampungan save
 -- 2. data yang dikirim = {idBarang: BigDecimal, namaPeminjam: string, nip: string, keperluan: string, tanggalpinjam: date, tanggaljatuhtempo: date}
 -- 3. set status peminjaman = 0(menunggu konfirmasi)
--- api value = "/pinjam/save" --
--- api value = "pinjam/get/{id}" --
--- api value = "/pinjam/edit" --
+-h- api value = "/pinjam/save" --
+-h- api value = "pinjam/get/{id}" --
+-h- api value = "/pinjam/edit" --
 
 --c. daftar konfirmasi -- DONE
 --1. query = tabel peminjaman query by nip, where status peminjaman = 0;
@@ -42,14 +42,17 @@ SAVE PEMINJAMAN -- DONE
 -- e. edit
 -- 1. data = idpeminjaman => get data peminjaman by id
 -- 2. return data yang akan diedit.
--- lihat line 29-28
+-h- lihat line 29-28
 
 PERSETUJUAN
-query daftar persetujuan
-1.query ke tabel persetujuan join ke tabel bmn dan kode barang where status_peminjaman = 0 (menunggu konfirmasi)
+-- query daftar persetujuan
+-- 1.query ke tabel persetujuan join ke tabel bmn dan kode barang where status_peminjaman = 0 (menunggu konfirmasi)
+-h- api value = "approval/get"
 
-query count persetujuan
-1.query ke tabel persetujuan join ke tabel bmn dan kode barang where status_peminjaman = 0 (menunggu konfirmasi) => cari countnya berapa
+-- query count persetujuan
+-- 1.query ke tabel persetujuan join ke tabel bmn dan kode barang where status_peminjaman = 0 (menunggu konfirmasi) => cari countnya berapa
+-h- api value = "approval/get" ==> balikan CommonResponseModel telah dimodifikasi dan ditambahkan 'totalData'
+-h- CommonResponseModel -> {title: string, code: string, message: string, data: Object, totalData: Long}
 
 a. setuju
 1. data: idpeminjaman=> cek? status barangnya, statusnya = 1? => message: sudah dipinjam oleh orang lain.

@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface IMasterBmnRepoCustom {
 
-    List<Object[]> getBarangByKondisiAndStatus();
+    List<Object[]> getBarangByKondisiAndStatus(String kondisi, String status);
 }

@@ -32,6 +32,7 @@ public class PegawaiController {
                 crm.setCode("1");
                 crm.setMessage("Data pegawai ditemukan disistem kepegawaian");
                 crm.setData(pegawai);
+                crm.setTotalData((long) 1);
             } else {
                 crm.setCode("0");
                 crm.setMessage("Data pegawai tidak ditemukan disistem kepegawaian");
@@ -40,7 +41,7 @@ public class PegawaiController {
             return ResponseEntity.ok(crm);
 
         } catch (Exception e) {
-            return new ResponseEntity<>(new CommonResponseModel("Get Pegawai", "0", e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new CommonResponseModel("Get Pegawai", "0", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
