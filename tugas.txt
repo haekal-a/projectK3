@@ -36,32 +36,35 @@ SAVE PEMINJAMAN -- DONE
 -- 1. selain id barang, tambahkan juga data dari tabel bmn => { jenisBarang(query dari tabel kode_barang), namaBarang, MerkBarang, Keterangan, Kondisi(dari tabel status barang) }
 -- 2.sortir data by created date, descending.
 
--- d. hapus case peminjaman
+-- d. hapus case peminjaman --DONE
 -- 1. data = idpeminjaman => hapus
 -h- api POST value = "/pinjam/delete" - @RequestParam idPeminjaman: BigDecimal
+-L- api sudah dihganti menjadi DELETE value="/pinjam/delete/{id}" menggunakan path variable
 
--- e. edit
+-- e. edit -- DONE
 -- 1. data = idpeminjaman => get data peminjaman by id
 -- 2. return data yang akan diedit.
 -h- lihat line 29-28
+REVISI
+-L- data yang diambil, tambahkan juga data dari tabel bmn => { jenisBarang(query dari tabel kode_barang), namaBarang, MerkBarang, Keterangan, Kondisi(dari tabel status barang) }
 
 PERSETUJUAN
--- query daftar persetujuan
+-- query daftar persetujuan -- DONE
 -- 1.query ke tabel persetujuan join ke tabel bmn dan kode barang where status_peminjaman = 0 (menunggu konfirmasi)
 -h- api value = "approval/get"
 
--- query count persetujuan
+-- query count persetujuan -- DONE
 -- 1.query ke tabel persetujuan join ke tabel bmn dan kode barang where status_peminjaman = 0 (menunggu konfirmasi) => cari countnya berapa
 -h- api value = "approval/get" ==> balikan CommonResponseModel telah dimodifikasi dan ditambahkan 'totalData'
 -h- CommonResponseModel -> {title: string, code: string, message: string, data: Object, totalData: Long}
 
--- a. setuju
+-- a. setuju -- DONE
 -- 1. data: idpeminjaman=> cek? status barangnya, statusnya = 0(tdk tersedia)? => message: sudah dipinjam oleh orang lain.
 --	berhasil? status peminjaman di tabel peminjaman = 1(disetujui), status barang di tabel status barang = 0(tdk tersedia)
 -h- api POST value = "approval/setuju" - @RequestBody PersetujuanInputModel
 -h- PersetujuanInputModel {idPeminjaman: BigDecimal, alasanPenolakan: String}
 
--- b. tolak
+-- b. tolak -- DONE
 -- 1. data: {idPeminjaman, alasanPenolakan}, set status peminjaman = 2(ditolak), insert alasan penolakan.
 -h- api POST value = "approval/tolak" - @RequestBody PersetujuanInputModel
 -h- PersetujuanInputModel {idPeminjaman: BigDecimal, alasanPenolakan: String}
