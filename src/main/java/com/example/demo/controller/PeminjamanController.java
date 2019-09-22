@@ -70,7 +70,6 @@ public class PeminjamanController {
             crm.setMessage("Data berhasil diubah");
             return ResponseEntity.ok(crm);
         } catch (Exception e) {
-            e.printStackTrace();
             crm.setCode("0");
             crm.setMessage(e.getMessage());
             return new ResponseEntity<>(crm, HttpStatus.INTERNAL_SERVER_ERROR);

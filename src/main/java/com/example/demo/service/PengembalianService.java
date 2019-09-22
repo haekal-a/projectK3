@@ -11,6 +11,7 @@ import com.example.demo.repo.dbpenaridesa.IStatusBarangRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -31,7 +32,11 @@ public class PengembalianService {
 
     public List<PeminjamanOutputModel> getListPinjamBarangStatusPeminjaman(String statusPeminjaman) {
         List<Object[]> list = peminjamanRepoCustom.getListPinjamBarangByStatusPeminjaman(statusPeminjaman);
-        return serviceHelper.getPeminjamanOutputModels(list);
+        List<PeminjamanOutputModel> output = new ArrayList<>();
+        for (Object[] data : list) {
+            output.add(serviceHelper.getPeminjamanOutputModel(data));
+        }
+        return output;
     }
 
     public void savePengembalian(PengembalianInputModel pim) {

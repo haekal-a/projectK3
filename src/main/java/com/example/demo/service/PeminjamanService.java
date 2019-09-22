@@ -36,23 +36,8 @@ public class PeminjamanService {
     }
 
     public PeminjamanOutputModel getPeminjamanById(BigDecimal id) {
-        PeminjamanOutputModel output = new PeminjamanOutputModel();
-        PeminjamanEntity data = peminjamanRepo.getOne(id);
-        output.setIdPeminjaman(data.getIdPeminjaman());
-        output.setIdBarang(data.getIdBarang());
-        output.setNip(data.getNip());
-        output.setNamaPeminjam(data.getNamaPeminjam());
-        output.setKeperluan(data.getKeperluan());
-        output.setTanggalPinjam(data.getTanggalPinjam());
-        output.setTanggalKembali(data.getTanggalKembali());
-        output.setTanggalPersetujuan(data.getTanggalPersetujuan());
-        output.setJatuhTempoPengembalian(data.getJatuhTempoPengembalian());
-        output.setCreatedBy(data.getCreatedBy());
-        output.setApprovedBy(data.getApprovedBy());
-        output.setCreatedDate(data.getCreatedDate());
-        output.setStatusPeminjaman(data.getStatusPeminjaman());
-        output.setAlasanPenolakan(data.getAlasanPenolakan());
-        return output;
+        Object[] data = peminjamanRepoCustom.getPinjamBarangByIdPeminjaman(id);
+        return serviceHelper.getPeminjamanOutputModel(data);
     }
 
     public void editPeminjaman(PeminjamanInputModel pim) {
@@ -62,7 +47,11 @@ public class PeminjamanService {
 
     public List<PeminjamanOutputModel> getListPinjamBarangByNipAndStatusPeminjaman(String nip, String statusPeminjaman) {
         List<Object[]> list = peminjamanRepoCustom.getListPinjamBarangByNipAndStatusPeminjaman(nip, statusPeminjaman);
-        return serviceHelper.getPeminjamanOutputModels(list);
+        List<PeminjamanOutputModel> output = new ArrayList<>();
+        for (Object[] data : list) {
+            output.add(serviceHelper.getPeminjamanOutputModel(data));
+        }
+        return output;
     }
 
     public void deletePeminjaman(BigDecimal id) {

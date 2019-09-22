@@ -50,9 +50,9 @@ public class PersetujuanController {
     }
 
     @RequestMapping(value = "setuju/{id}", method = RequestMethod.POST)
-    public ResponseEntity<CommonResponseModel> saveSetuju(@PathVariable String id) {
+    public ResponseEntity<CommonResponseModel> saveSetuju(@RequestBody PersetujuanInputModel pim) {
         try {
-            persetujuanService.saveSetuju(new BigDecimal(id));
+            persetujuanService.saveSetuju(pim);
             return ResponseEntity.ok(new CommonResponseModel("Save approval", "1", "Data Peminjaman berhasil disetujui"));
         } catch (EntityNotFoundException nfe) {
             return ResponseEntity.ok(new CommonResponseModel("Save approval", "0", nfe.getMessage()));
