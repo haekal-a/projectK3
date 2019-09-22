@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 public class PersetujuanInputModel {
     private BigDecimal idPeminjaman;
     private String alasanPenolakan;
+    private String approvedBy;
 
     public BigDecimal getIdPeminjaman() {
         return idPeminjaman;
@@ -20,5 +21,13 @@ public class PersetujuanInputModel {
 
     public void setAlasanPenolakan(String alasanPenolakan) {
         this.alasanPenolakan = alasanPenolakan;
+    }
+
+    public String getApprovedBy() {
+        return approvedBy;
+    }
+
+    public void setApprovedBy(String approvedBy) {
+        this.approvedBy = approvedBy;
     }
 }
