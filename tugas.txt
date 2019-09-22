@@ -69,11 +69,14 @@ PERSETUJUAN
 -h- api POST value = "approval/tolak" - @RequestBody PersetujuanInputModel
 -h- PersetujuanInputModel {idPeminjaman: BigDecimal, alasanPenolakan: String}
 
-REKAM PENGEMBALIAN
-query daftar persetujuan
-1.query ke tabel persetujuan join ke tabel bmn dan kode barang where status_peminjaman = 1 (disetujui tapi belum dikembalikan)
+-- REKAM PENGEMBALIAN
+-- query daftar persetujuan
+-- 1.query ke tabel persetujuan join ke tabel bmn dan kode barang where status_peminjaman = 1 (disetujui tapi belum dikembalikan)
+-h- api value = "return/get"
 
-a. rekam
-1. data = {idpeminjaman, tanggalpengembalian, kondisi }, idpeminjaman, tanggalpengembalian => set di tabel peminjaman
-   dan set status_peminjaman = 3 (selesai),
-   ditabel kondisi => set status barang = 0 dan kondisi sesuai dengan inputan admin
+-- a. rekam
+-- 1. data = {idpeminjaman, tanggalKembali, kondisi }, idpeminjaman, tanggalKembali => set di tabel peminjaman
+--   dan set status_peminjaman = 3 (selesai),
+--   ditabel kondisi => set status barang = 1 dan kondisi sesuai dengan inputan admin
+-h- api POST value = "return/get" @RequestBody PengembalianInputModel
+-h- PengembalianInputModel {idPeminjaman: BigDecimal, tanggalKembali: Date, kondisi: String}
