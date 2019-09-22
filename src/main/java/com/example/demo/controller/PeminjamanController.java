@@ -101,12 +101,12 @@ public class PeminjamanController {
         }
     }
 
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.POST)
-    public ResponseEntity<CommonResponseModel> deletePeminjaman(@PathVariable BigDecimal id) {
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public ResponseEntity<CommonResponseModel> deletePeminjaman(@RequestParam BigDecimal idPeminjaman) {
         CommonResponseModel crm = new CommonResponseModel();
         crm.setTitle("Delete peminjaman");
         try {
-            peminjamanService.deletePeminjaman(id);
+            peminjamanService.deletePeminjaman(idPeminjaman);
             crm.setCode("1");
             crm.setMessage("Data berhasil dihapus");
             return ResponseEntity.ok(crm);

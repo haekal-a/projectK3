@@ -1,6 +1,10 @@
 package com.example.demo.helper;
 
+import com.example.demo.domain.dbpenaridesa.PeminjamanEntity;
+import com.example.demo.model.PeminjamanInputModel;
 import com.example.demo.model.PeminjamanOutputModel;
+import com.example.demo.repo.dbpenaridesa.IPeminjamanRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;

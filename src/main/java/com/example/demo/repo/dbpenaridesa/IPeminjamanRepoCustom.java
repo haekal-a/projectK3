@@ -1,6 +1,7 @@
 package com.example.demo.repo.dbpenaridesa;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface IPeminjamanRepoCustom {

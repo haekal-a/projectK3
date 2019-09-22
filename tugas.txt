@@ -38,6 +38,7 @@ SAVE PEMINJAMAN -- DONE
 
 -- d. hapus case peminjaman
 -- 1. data = idpeminjaman => hapus
+-h- api POST value = "/pinjam/delete" - @RequestParam idPeminjaman: BigDecimal
 
 -- e. edit
 -- 1. data = idpeminjaman => get data peminjaman by id
@@ -54,12 +55,16 @@ PERSETUJUAN
 -h- api value = "approval/get" ==> balikan CommonResponseModel telah dimodifikasi dan ditambahkan 'totalData'
 -h- CommonResponseModel -> {title: string, code: string, message: string, data: Object, totalData: Long}
 
-a. setuju
-1. data: idpeminjaman=> cek? status barangnya, statusnya = 1? => message: sudah dipinjam oleh orang lain.
-	berhasil? status peminjaman di tabel peminjaman = 1, status barang di tabel status barang = 1
+-- a. setuju
+-- 1. data: idpeminjaman=> cek? status barangnya, statusnya = 0(tdk tersedia)? => message: sudah dipinjam oleh orang lain.
+--	berhasil? status peminjaman di tabel peminjaman = 1(disetujui), status barang di tabel status barang = 0(tdk tersedia)
+-h- api POST value = "approval/setuju" - @RequestBody PersetujuanInputModel
+-h- PersetujuanInputModel {idPeminjaman: BigDecimal, alasanPenolakan: String}
 
-b. tolak
-1. data: {idPeminjaman, alasan penolakan}, set status peminjaman = 2, insert alasan penolakan.
+-- b. tolak
+-- 1. data: {idPeminjaman, alasanPenolakan}, set status peminjaman = 2(ditolak), insert alasan penolakan.
+-h- api POST value = "approval/tolak" - @RequestBody PersetujuanInputModel
+-h- PersetujuanInputModel {idPeminjaman: BigDecimal, alasanPenolakan: String}
 
 REKAM PENGEMBALIAN
 query daftar persetujuan

@@ -1,6 +1,6 @@
 package com.example.demo.repo.dbpenaridesa;
 
-import com.example.demo.domain.dbpenaridesa.PeminjamanEntity;
+import com.example.demo.domain.dbpenaridesa.StatusBarangEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,5 +9,7 @@ import java.math.BigDecimal;
 
 @Repository
 @Transactional
-public interface IPeminjamanRepo extends JpaRepository<PeminjamanEntity, BigDecimal> {
+public interface IStatusBarangRepo extends JpaRepository<StatusBarangEntity, BigDecimal> {
+
+    StatusBarangEntity getStatusBarangByIdBarang(BigDecimal idBarang);
 }
