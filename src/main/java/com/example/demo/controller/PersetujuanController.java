@@ -49,7 +49,7 @@ public class PersetujuanController {
         }
     }
 
-    @RequestMapping(value = "setuju/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "setuju", method = RequestMethod.POST)
     public ResponseEntity<CommonResponseModel> saveSetuju(@RequestBody PersetujuanInputModel pim) {
         try {
             persetujuanService.saveSetuju(pim);

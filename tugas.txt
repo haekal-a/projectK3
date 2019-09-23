@@ -69,14 +69,29 @@ PERSETUJUAN
 -h- api POST value = "approval/tolak" - @RequestBody PersetujuanInputModel
 -h- PersetujuanInputModel {idPeminjaman: BigDecimal, alasanPenolakan: String}
 
--- REKAM PENGEMBALIAN
+-- REKAM PENGEMBALIAN -- DONE
 -- query daftar persetujuan
 -- 1.query ke tabel persetujuan join ke tabel bmn dan kode barang where status_peminjaman = 1 (disetujui tapi belum dikembalikan)
 -h- api value = "return/get"
 
--- a. rekam
+-- a. rekam -- DONE
 -- 1. data = {idpeminjaman, tanggalKembali, kondisi }, idpeminjaman, tanggalKembali => set di tabel peminjaman
 --   dan set status_peminjaman = 3 (selesai),
 --   ditabel kondisi => set status barang = 1 dan kondisi sesuai dengan inputan admin
 -h- api POST value = "return/get" @RequestBody PengembalianInputModel
 -h- PengembalianInputModel {idPeminjaman: BigDecimal, tanggalKembali: Date, kondisi: String}
+
+MONITORING
+
+1.Barang yang sedang dipinjam.
+a. untuk admin -> bisa menggunakan query daftar pengembalian barang.
+b. untuk user -> query mirip dengan query daftar pengembalian barang, ditambahkan parameter NIP.
+
+2. histori peminjaman barang
+a. get list semua peminjaman barang parameter by NIP, diurutkan by dari tanggal "jatuh tempo pengembalian" terakhir.
+
+3. monitoring.
+a. get list daftar barang by jenis barang.
+b. get informasi barang
+    1. informasi barang (bisa diambil dari tabel bmn, kode barang, dan status diambil dari tabel peminjaman barang)
+    2. histori peminjaman, get daftar histori barang tersebut pernah dipinjam oleh siapa saja. termasuk didalamnya nama peminjaman, keperluan, tanggal pinjam, JT, dan pengembalian
