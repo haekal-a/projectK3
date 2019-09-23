@@ -30,7 +30,7 @@ public class PengembalianController {
         CommonResponseModel crm = new CommonResponseModel();
         try {
             // Daftar disetujui = getDaftarDisetujui where status peminjaman = 1
-            List<PeminjamanOutputModel> poms = pengembalianService.getListPinjamBarangStatusPeminjaman("1");
+            List<PeminjamanOutputModel> poms = pengembalianService.getListPinjamBarangByStatusPeminjaman("1");
             crm.setTitle("Get list approved");
             if (poms.size() > 0) {
                 crm.setCode("1");

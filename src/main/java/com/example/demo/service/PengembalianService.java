@@ -30,7 +30,7 @@ public class PengembalianService {
         this.statusBarangRepo = statusBarangRepo;
     }
 
-    public List<PeminjamanOutputModel> getListPinjamBarangStatusPeminjaman(String statusPeminjaman) {
+    public List<PeminjamanOutputModel> getListPinjamBarangByStatusPeminjaman(String statusPeminjaman) {
         List<Object[]> list = peminjamanRepoCustom.getListPinjamBarangByStatusPeminjaman(statusPeminjaman);
         List<PeminjamanOutputModel> output = new ArrayList<>();
         for (Object[] data : list) {

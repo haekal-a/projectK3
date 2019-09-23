@@ -36,10 +36,19 @@ public class PeminjamanRepoCustomImpl implements IPeminjamanRepoCustom {
 
     @Override
     public List<Object[]> getListPinjamBarangByNipAndStatusPeminjaman(String nip, String statusPeminjaman) {
-
         String s = joinEmpatTable + " WHERE\n" +
                 "    a.nip = ? AND a.status_peminjaman = ?\n" +
                 "ORDER BY a.created_date DESC";
+        Query query = entityManager.createNativeQuery(s);
+        query.setParameter(1, nip).setParameter(2, statusPeminjaman);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Object[]> getListPinjamBarangByNipAndStatusPeminjamanOrderByTglJatuhTempo(String nip, String statusPeminjaman) {
+        String s = joinEmpatTable + " WHERE\n" +
+                "    a.nip = ? AND a.status_peminjaman = ?\n" +
+                "ORDER BY a.jatuh_tempo_pengembalian ";
         Query query = entityManager.createNativeQuery(s);
         query.setParameter(1, nip).setParameter(2, statusPeminjaman);
         return query.getResultList();
@@ -55,11 +64,38 @@ public class PeminjamanRepoCustomImpl implements IPeminjamanRepoCustom {
     }
 
     @Override
+    public List<Object[]> getListPinjamBarangByStatusPeminjamanOrderByTglJatuhTempo(String statusPeminjaman) {
+        String s = joinEmpatTable +" WHERE a.status_peminjaman = ?\n" +
+                "ORDER BY a.jatuh_tempo_pengembalian ";
+        Query query = entityManager.createNativeQuery(s);
+        query.setParameter(1, statusPeminjaman);
+        return query.getResultList();
+    }
+
+    @Override
     public Object[] getPinjamBarangByIdPeminjaman(BigDecimal idPeminjaman) {
         String s = joinEmpatTable +" WHERE a.id_peminjaman = ?\n" +
                 "ORDER BY a.created_date DESC";
         Query query = entityManager.createNativeQuery(s);
         query.setParameter(1, idPeminjaman);
         return (Object[]) query.getSingleResult();
+    }
+
+    @Override
+    public List<Object[]> getListPinjamBarangByNip(String nip) {
+        String s = joinEmpatTable +" WHERE a.nip = ?\n" +
+                "ORDER BY a.created_date DESC";
+        Query query = entityManager.createNativeQuery(s);
+        query.setParameter(1, nip);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Object[]> getListPinjamBarangByJenisBarang(String jenisBarang) {
+        String s = joinEmpatTable +" WHERE b.jenis_barang = ?\n" +
+                "ORDER BY a.jatuh_tempo_pengembalian ";
+        Query query = entityManager.createNativeQuery(s);
+        query.setParameter(1, jenisBarang);
+        return query.getResultList();
     }
 }

@@ -83,15 +83,18 @@ PERSETUJUAN
 
 MONITORING
 
-1.Barang yang sedang dipinjam.
-a. untuk admin -> bisa menggunakan query daftar pengembalian barang.
-b. untuk user -> query mirip dengan query daftar pengembalian barang, ditambahkan parameter NIP.
+-- 1.Barang yang sedang dipinjam.
+-- a. untuk admin -> bisa menggunakan query daftar pengembalian barang.
+-h- api value = "monitoring/pinjam/get"
+-- b. untuk user -> query mirip dengan query daftar pengembalian barang, ditambahkan parameter NIP.
+-h- api value = "monitoring/pinjam/get/{nip}"
 
-2. histori peminjaman barang
-a. get list semua peminjaman barang parameter by NIP, diurutkan by dari tanggal "jatuh tempo pengembalian" terakhir.
+-- 2. histori peminjaman barang
+-- a. get list semua peminjaman barang parameter by NIP, diurutkan by dari tanggal "jatuh tempo pengembalian" terakhir.
+-h- api value = "monitoring/pinjam/history/get/{nip}"
 
-3. monitoring.
-a. get list daftar barang by jenis barang.
+?? 3. monitoring. 
+?? a. get list daftar barang by jenis barang. ??? balikannya apa aja?
 b. get informasi barang
     1. informasi barang (bisa diambil dari tabel bmn, kode barang, dan status diambil dari tabel peminjaman barang)
     2. histori peminjaman, get daftar histori barang tersebut pernah dipinjam oleh siapa saja. termasuk didalamnya nama peminjaman, keperluan, tanggal pinjam, JT, dan pengembalian
