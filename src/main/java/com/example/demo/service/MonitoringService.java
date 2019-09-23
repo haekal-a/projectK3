@@ -1,8 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.helper.ServiceHelper;
+import com.example.demo.model.BarangOutputModel;
 import com.example.demo.model.PeminjamanOutputModel;
 import com.example.demo.repo.dbpenaridesa.IPeminjamanRepoCustom;
+import com.example.demo.repo.dbsimakbmn.IMasterBmnRepoCustom;
+import com.example.demo.repo.dbsimakbmn.MasterBmnRepoCustomImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,11 +17,13 @@ public class MonitoringService {
 
     private IPeminjamanRepoCustom peminjamanRepoCustom;
     private ServiceHelper serviceHelper;
+    private IMasterBmnRepoCustom masterBmnRepoCustom;
 
     @Autowired
-    public MonitoringService(IPeminjamanRepoCustom peminjamanRepoCustom, ServiceHelper serviceHelper) {
+    public MonitoringService(IPeminjamanRepoCustom peminjamanRepoCustom, ServiceHelper serviceHelper, IMasterBmnRepoCustom masterBmnRepoCustom) {
         this.peminjamanRepoCustom = peminjamanRepoCustom;
         this.serviceHelper = serviceHelper;
+        this.masterBmnRepoCustom = masterBmnRepoCustom;
     }
 
     public List<PeminjamanOutputModel> getListPinjamBarangByStatusPeminjaman(String statusPeminjaman) {
@@ -55,5 +60,14 @@ public class MonitoringService {
             output.add(serviceHelper.getPeminjamanOutputModel(data));
         }
         return output;
+    }
+
+    public List<BarangOutputModel> getListBarangByKdBarang(String kdBarang) {
+        List<BarangOutputModel> list = new ArrayList<>();
+        List<Object[]> data = masterBmnRepoCustom.getBarangByKdBarang(kdBarang);
+        for (Object[] o : data){
+            list.add(serviceHelper.getBarangOutputModel(o));
+        }
+        return list;
     }
 }

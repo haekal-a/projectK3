@@ -33,4 +33,23 @@ public class MasterBmnRepoCustomImpl implements IMasterBmnRepoCustom {
         query.setParameter(1, kondisi).setParameter(2, status);
         return query.getResultList();
     }
+
+    @Override
+    public List<Object[]> getBarangByKdBarang(String kdBarang) {
+        String s = "SELECT \n" +
+                "    a.*, b.jenis_barang\n" +
+                "FROM\n" +
+                "    (SELECT \n" +
+                "        a.*, b.sts_barang, b.Kondisi kondisi_db_penari\n" +
+                "    FROM\n" +
+                "        db_simak_bmn.master_bmn a\n" +
+                "    JOIN db_penari_desa.status_barang b ON a.id = b.id_barang) a\n" +
+                "        JOIN\n" +
+                "    db_simak_bmn.kode_barang b ON a.kd_barang = b.kd_barang\n" +
+                "WHERE\n" +
+                "    b.kd_barang = ?";
+        Query query = entityManager.createNativeQuery(s);
+        query.setParameter(1, kdBarang);
+        return query.getResultList();
+    }
 }
