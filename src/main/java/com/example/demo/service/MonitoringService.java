@@ -5,7 +5,6 @@ import com.example.demo.model.BarangOutputModel;
 import com.example.demo.model.PeminjamanOutputModel;
 import com.example.demo.repo.dbpenaridesa.IPeminjamanRepoCustom;
 import com.example.demo.repo.dbsimakbmn.IMasterBmnRepoCustom;
-import com.example.demo.repo.dbsimakbmn.MasterBmnRepoCustomImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -53,15 +52,6 @@ public class MonitoringService {
         return output;
     }
 
-    public List<PeminjamanOutputModel> getDaftarBarangByJenisBarang(String jenisBarang) {
-        List<Object[]> list = peminjamanRepoCustom.getListPinjamBarangByJenisBarang(jenisBarang);
-        List<PeminjamanOutputModel> output = new ArrayList<>();
-        for (Object[] data : list) {
-            output.add(serviceHelper.getPeminjamanOutputModel(data));
-        }
-        return output;
-    }
-
     public List<BarangOutputModel> getListBarangByKdBarang(String kdBarang) {
         List<BarangOutputModel> list = new ArrayList<>();
         List<Object[]> data = masterBmnRepoCustom.getBarangByKdBarang(kdBarang);
@@ -69,5 +59,14 @@ public class MonitoringService {
             list.add(serviceHelper.getBarangOutputModel(o));
         }
         return list;
+    }
+
+    public List<PeminjamanOutputModel> getListHistoryBarangByIdBarang(String idBarang) {
+        List<Object[]> list = peminjamanRepoCustom.getListHistoryBarangByIdBarang(idBarang);
+        List<PeminjamanOutputModel> output = new ArrayList<>();
+        for (Object[] data : list) {
+            output.add(serviceHelper.getPeminjamanOutputModel(data));
+        }
+        return output;
     }
 }

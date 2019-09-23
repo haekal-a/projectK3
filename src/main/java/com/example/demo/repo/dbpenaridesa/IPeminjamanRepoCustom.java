@@ -19,4 +19,6 @@ public interface IPeminjamanRepoCustom {
     List<Object[]> getListPinjamBarangByNip(String nip);
 
     List<Object[]> getListPinjamBarangByJenisBarang(String jenisBarang);
+
+    List<Object[]> getListHistoryBarangByIdBarang(String idBarang);
 }

@@ -99,4 +99,5 @@ MONITORING
 
 b. get informasi barang
 --    1. informasi barang (bisa diambil dari tabel bmn, kode barang, dan status diambil dari tabel peminjaman barang)
-    2. histori peminjaman, get daftar histori barang tersebut pernah dipinjam oleh siapa saja. termasuk didalamnya nama peminjaman, keperluan, tanggal pinjam, JT, dan pengembalian
+--    2. histori peminjaman, get daftar histori barang tersebut pernah dipinjam oleh siapa saja. termasuk didalamnya nama peminjaman, keperluan, tanggal pinjam, JT, dan pengembalian
+-h- api value = "barang/history/get/{idBarang}" 

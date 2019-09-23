@@ -118,4 +118,28 @@ public class MonitoringController {
             return new ResponseEntity<>(new CommonResponseModel("Get list barang", "0", e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping(value = "barang/history/get/{idBarang}")
+    public ResponseEntity<CommonResponseModel> getListHistoryBarangByIdBarang(@PathVariable String idBarang) {
+        CommonResponseModel crm = new CommonResponseModel();
+        try {
+            // Daftar barang = getListHistoryBarang where IdBarang = ?
+            List<PeminjamanOutputModel> boms = monitoringService.getListHistoryBarangByIdBarang(idBarang);
+            crm.setTitle("Get list history barang");
+            if (boms.size() > 0) {
+                crm.setCode("1");
+                crm.setMessage("Data ditemukan");
+                crm.setData(boms);
+                crm.setTotalData((long) boms.size());
+            } else {
+                crm.setCode("0");
+                crm.setMessage("Data tidak ditemukan");
+            }
+
+            return ResponseEntity.ok(crm);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(new CommonResponseModel("Get list history barang", "0", e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
