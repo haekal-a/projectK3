@@ -102,7 +102,7 @@ public class PeminjamanRepoCustomImpl implements IPeminjamanRepoCustom {
     @Override
     public List<Object[]> getListHistoryBarangByIdBarang(String idBarang) {
         String s = joinEmpatTable +" WHERE a.id_barang = ? AND a.Status_Peminjaman != '0'\n" +
-                "ORDER BY a.jatuh_tempo_pengembalian DESC ";
+                "ORDER BY a.created_date DESC ";
         Query query = entityManager.createNativeQuery(s);
         query.setParameter(1, idBarang);
         return query.getResultList();
