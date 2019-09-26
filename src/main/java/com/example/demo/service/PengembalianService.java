@@ -39,10 +39,13 @@ public class PengembalianService {
         return output;
     }
 
-    public void savePengembalian(PengembalianInputModel pim) {
+    public void savePengembalian(PengembalianInputModel pim) throws Exception {
         PeminjamanEntity pinjam = peminjamanRepo.getOne(pim.getIdPeminjaman());
         StatusBarangEntity status = statusBarangRepo.getStatusBarangByIdBarang(pinjam.getIdBarang());
 
+        if(pim.getTanggalKembali().before(pinjam.getTanggalPinjam())){
+            throw new Exception("Tanggal Pengembalian tidak boleh Kurang dari tanggal mulai peminjaman");
+        }
         pinjam.setTanggalKembali(pim.getTanggalKembali());
         pinjam.setStatusPeminjaman("3");
         peminjamanRepo.save(pinjam);
