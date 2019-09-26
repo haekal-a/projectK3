@@ -44,6 +44,12 @@ public class PersetujuanService {
     public void saveSetuju(PersetujuanInputModel pim) throws Exception {
         PeminjamanEntity pinjam = peminjamanRepo.getOne(pim.getIdPeminjaman());
         StatusBarangEntity status = statusBarangRepo.getStatusBarangByIdBarang(pinjam.getIdBarang());
+        Date today = new Date();
+
+        // cek tgl jatuh tempo
+        if (today.after(pinjam.getJatuhTempoPengembalian())) {
+            throw new Exception("Permintaan Persetujuan tidak dapat di proses.\nTanggal Persetujuan melewati masa permohonan peminjaman.\nSilahkan pilih penolakan !");
+        }
 
         // cek barang tersedia atau tidak
         if (status.getStsBarang().equals("0")) throw new Exception("Barang sudah dipinjam orang lain");
